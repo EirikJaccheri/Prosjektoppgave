@@ -25,12 +25,32 @@
 \section{Derivation of interaction hamiltonian}
 
 \subsection{Quantization of vector potetntial in a cavity}
-We follow the derivation of \cite{QuantizationEMCavities}
-%explain why we can quantize the modes?
+%TODO: figur av cavity
+%Burde jeg legge til maxwells likninger for å forklare transversal etc?
+%Burde introdusere orthogonale modefunksjoner for at kvantisering skal gi mening?
+We follow the derivation of \cite{QuantizationEMCavities} for the quantization of the electromagnetic modes inside a rectangular cavity with side lengths $L_x$, $L_y$ and $L_z$. The walls in the $z$-direction are assumed to be perfectly conducting, leading to the boundary conditions $\textbf{E}|_{tan} = B|_{norm} = 0$ at $z=0$ and $z = L_z$. Furthermore we assume that $L_x, L_y >> L_z$ allowing us to impose periodic boundary conditions in the $x$ and $y$-directions. These boundary conditions are satisfied by the vector potential
 \begin{equation}
-    \textbf{A} = i \sum_{\vec{q},s} \sqrt{\frac{\hbar}{\epsilon \epsilon_0 V w_q}} e^{i(q_x x + q_y y )} \hat{e}_{\vec{q},s}\left(a_{\vec{q},s} + a_{-\vec{q}, s}\right)
+    \textbf{A} = \sum_{\vec{q}} \sqrt{\frac{\hbar}{\epsilon \epsilon_0 V w_q}} e^{i(q_x x + q_y y)} \begin{pmatrix}\left(b_x - b_x^{\dagger}\right)i\sin(\pi z / L)\\\left(b_y - b_y^{\dagger}\right)i\sin(\pi z / L)\\\left(b_z + b_z^{\dagger}\right)i\cos(\pi z / L)\end{pmatrix} \cdot \begin{pmatrix} \hat{e}_x \\ \hat{e}_y  \\  \hat{e}_z   \end{pmatrix} \;,
+    \label{classical vector potential}
+\end{equation}
+%hvorfor må b-ene v-være akkurat slik=
+where $V$ is the volume of the cavity, $\omega_{\vec{q}}$ is the frequency of the electromagnetic wave and $b_i$ is the field amplitude in the $\hat{e}_i$ direction. The wave vector can take the values $\vec{q} = (2\pi q_1 / L_1, 2\pi q_2 / L_2, \pi q_3 / L_3 )$, with $q_1, q_2 = 0, \pm 1, \pm 2...$ and $\q_3 = 0, 1, 2...$.
+
+Because of the transversality condition $\textbf{A} \cdot \vec{q} = 0$, the field amplitudes are not independent (Følger dette fra gauge valg??). In order to facilitate the quantization, it is convenient to rotate to a new basis $\bar{e}_{\vec{q}, s}, s \in (1,2,3)$ where the new $z$-axis (labeled by $3$) is paralell to $\vec{q}$. The new basis vectors are given by $\bar{e}_{\vec{q}, s} = \sum_i O^{\vec{q}}_{si} \hat{e}_i $, where
+\begin{equation}
+    O^{\vec{q}} = \begin{pmatrix} 
+    \cos{\theta}\cos{\phi} & \cos{\theta}\sin{\phi} & - \sin{\theta} \\ 
+    -\sin{\phi}            & \cos{\phi}             & 0 \\
+    \sin{\phi}\cos{\phi}   & \sin{\theta}\sin{\phi} & \cos{\theta}
+    \end{pmatrix}\;.
+\end{equation}
+Where the angles $\theta$, $\phi$ depend on $\vec{q}$. The field amplitudes in this basis become $a_{\vec{q},s} = \sum_i O^{\vec{q}}_{s,i} b_i$ and $a_{\vec{q},s}^{\dagger} = \sum_i O^{\vec{q}}_{s,i} b_i^{\dagger}$. Written in this basis, the vector potential becomes
+\begin{equation}
+    \textbf{A} = i \sum_{\vec{q},s} \sqrt{\frac{\hbar}{\epsilon \epsilon_0 V w_q}} e^{i(q_x x + q_y y )} \hat{e}_{\vec{q},s}\left(a_{\vec{q},s} + a_{-\vec{q}, s}^{\dagger}\right) \;,
     \label{vector potential cavity}
 \end{equation}
+where $s \in (1,2)$.
+%hvorfor kan vi nå kvantisere?
 
 
 \subsection{Paramagnetic coupling}
@@ -38,7 +58,7 @@ Energy of particle experiencing a electromagnetic field is given by the Hamilton
 \begin{equation}
     H_A = \frac{1}{2m} \sum_{\sigma} \int dr \psi_{\sigma}^{\dagger}(r) \left( \frac{\hbar}{i} \nabla - q \textbf{A} \right)^2 \psi_{\sigma}(r) 
 \end{equation}
-The terms linear in the vector potential $\textbf{A}$, define the paramagnetic interaction hamiltonian
+The terms linear in the vector potential $\textbf{A}$, define the paramagnetic interaction hamiltonian (burde jeg også kommentere diamagnetisk term?)
 \begin{equation}
     H_{int} = \sum_{\sigma} \int dr  \psi_{\sigma}^{\dagger}(r) \frac{q\hbar}{2mi}\left(  \nabla \cdot \textbf{A}  -  \textbf{A} \cdot \nabla \right) \psi_{\sigma}(r) 
 \end{equation}
@@ -78,11 +98,11 @@ Using the expression for the vector potential~\ref{vector potential cavity} and 
 \begin{align*}
     \begin{split}
     H_{int} &= \sum_{\vec{n}} \left(\frac{iaet}{\hbar} \sum_{i=x,y}\sum_{\sigma} (C_{\vec{n},\sigma}^{\dagger} C_{\vec{n + 1_i},\sigma} - C_{\vec{n + 1_i},\sigma}^{\dagger} C_{\vec{n},\sigma})\hat{e}_i\right) \cdot \\     
-            &\left(i \sum_{\vec{q},s} \sqrt{\frac{\hbar}{\epsilon \epsilon_0 V w_q}} e^{i\left(q_x \left(x_{\vec{n + 1_i}} + x_{\vec{n}} \right) + q_y \left(y_{\vec{n + 1_i}} + y_{\vec{n}} \right)\right)/2} \hat{e}_{\vec{q},s}\left(a_{\vec{q},s} + a_{-\vec{q}, s}\right)\right)
+            &\left(i \sum_{\vec{q},s} \sqrt{\frac{\hbar}{\epsilon \epsilon_0 V w_q}} e^{i\left(q_x \left(x_{\vec{n + 1_i}} + x_{\vec{n}} \right) + q_y \left(y_{\vec{n + 1_i}} + y_{\vec{n}} \right)\right)/2} \hat{e}_{\vec{q},s}\left(a_{\vec{q},s} + a_{-\vec{q}, s}^{\dagger}\right)\right)
     \end{split}\\
     %
     \begin{split}
-    H_{int} &= \frac{-aet}{\sqrt{\hbar \epsilon \epsilon_0 V} } \sum_{\sigma,\vec{q},s} \left(a_{\vec{q},s} + a_{-\vec{q}, s}\right) \frac{1}{\sqrt{w_q}} \\ 
+    H_{int} &= \frac{-aet}{\sqrt{\hbar \epsilon \epsilon_0 V} } \sum_{\sigma,\vec{q},s} \left(a_{\vec{q},s} + a_{-\vec{q}, s}^{\dagger}\right) \frac{1}{\sqrt{w_q}} \\ 
             &  \sum_{i=x,y} \sum_{\vec{n}} \hat{e}_{\vec{q},s,i} (C_{\vec{n},\sigma}^{\dagger} C_{\vec{n + 1_i},\sigma} - C_{\vec{n + 1_i},\sigma}^{\dagger} C_{\vec{n},\sigma}) e^{i\left(q_x \left(x_{\vec{n + 1_i}} + x_{\vec{n}} \right) + q_y \left(y_{\vec{n + 1_i}} + y_{\vec{n}} \right)\right)/2}
     \end{split}
      %
@@ -91,7 +111,7 @@ Using the expression for the vector potential~\ref{vector potential cavity} and 
 Introducing fourier transformed operators $C_{k,\sigma} , C_{k,\sigma}^{\dagger}$
 \begin{align*}
     \begin{split}
-    H_{int} &= \frac{-aet}{\sqrt{\hbar \epsilon \epsilon_0 V} } \sum_{\sigma,\vec{q},s} \left(a_{\vec{q},s} + a_{-\vec{q}, s}\right) \frac{1}{\sqrt{w_q}} \\ 
+    H_{int} &= \frac{-aet}{\sqrt{\hbar \epsilon \epsilon_0 V} } \sum_{\sigma,\vec{q},s} \left(a_{\vec{q},s} + a_{-\vec{q}, s}^{\dagger}\right) \frac{1}{\sqrt{w_q}} \\ 
             & \sum_{k,k'}   C_{\vec{k},\sigma}^{\dagger} C_{\vec{k'},\sigma} \sum_{i=x,y} \left[\frac{1}{N}\sum_{\vec{n}} \hat{e}_{\vec{q},s,i} ( e^{i\left(k \cdot r_{\vec{n}} - k' \cdot r_{\vec{n+1_i}} \right)} - e^{i\left(k \cdot r_{\vec{n+1_i}} - k' \cdot r_{\vec{n}} \right)}) e^{i\left(q_x \left(x_{\vec{n + 1_i}} + x_{\vec{n}} \right) + q_y \left(y_{\vec{n + 1_i}} + y_{\vec{n}} \right)\right)/2}\right]
     \end{split}
      %
@@ -107,7 +127,7 @@ Performing the summation in the square brackets setting $i = x$ and using $x_{\v
 where in the last line we have used $\sum_n e^{ian(k - k')} = N a \delta_{k,k'}$. Performing the analogus calculation for $i = y$, equation~\ref{interaction hamiltonian step 2} becomes
 \begin{align}
 \begin{split}
-    H_{int} &=  \sum_{\vec{k},\sigma,\vec{q},s} \frac{g_{\vec{k},s}^{(\vec{q})}}{\sqrt{N}} \left(a_{\vec{q},s} + a_{-\vec{q}, s}\right) C_{\vec{k},\sigma}^{\dagger} C_{\vec{k + \vec{q}},\sigma} 
+    H_{int} &=  \sum_{\vec{k},\sigma,\vec{q},s} \frac{g_{\vec{k},s}^{(\vec{q})}}{\sqrt{N}} \left(a_{\vec{q},s} + a_{-\vec{q}, s}^{\dagger}\right) C_{\vec{k},\sigma}^{\dagger} C_{\vec{k + \vec{q}},\sigma} 
     \end{split}
      %
 \end{align}
