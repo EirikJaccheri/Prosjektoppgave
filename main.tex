@@ -1,0 +1,123 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,mathtools}
+\usepackage{biblatex}
+\addbibresource{prosjektoppgave.bib}
+
+\title{Prosjektoppgave}
+\author{Eirik Jaccheri}
+\date{Autumn 2022}
+\usepackage{graphicx}
+\usepackage{layout}
+\setlength{\voffset}{-0.75in}
+\setlength{\headsep}{5pt}
+\setlength{\textheight}{700pt} 
+
+
+%Spørsmål jeg har til senere:
+%Hvordan kan jeg se at E og B felt blir maksimalt på ulike steder
+
+
+\begin{document}
+
+\maketitle
+
+\section{Derivation of interaction hamiltonian}
+
+\subsection{Quantization of vector potetntial in a cavity}
+We follow the derivation of \cite{QuantizationEMCavities}
+%explain why we can quantize the modes?
+\begin{equation}
+    \textbf{A} = i \sum_{\vec{q},s} \sqrt{\frac{\hbar}{\epsilon \epsilon_0 V w_q}} e^{i(q_x x + q_y y )} \hat{e}_{\vec{q},s}\left(a_{\vec{q},s} + a_{-\vec{q}, s}\right)
+    \label{vector potential cavity}
+\end{equation}
+
+
+\subsection{Paramagnetic coupling}
+Energy of particle experiencing a electromagnetic field is given by the Hamiltonian
+\begin{equation}
+    H_A = \frac{1}{2m} \sum_{\sigma} \int dr \psi_{\sigma}^{\dagger}(r) \left( \frac{\hbar}{i} \nabla - q \textbf{A} \right)^2 \psi_{\sigma}(r) 
+\end{equation}
+The terms linear in the vector potential $\textbf{A}$, define the paramagnetic interaction hamiltonian
+\begin{equation}
+    H_{int} = \sum_{\sigma} \int dr  \psi_{\sigma}^{\dagger}(r) \frac{q\hbar}{2mi}\left(  \nabla \cdot \textbf{A}  -  \textbf{A} \cdot \nabla \right) \psi_{\sigma}(r) 
+\end{equation}
+By partial integration it can be rewritten
+\begin{equation}
+    H_{int} = \sum_{\sigma} \int dr \frac{q\hbar}{2mi} \textbf{A} \cdot \left[  (\nabla  \psi_{\sigma}^{\dagger}(r)) \psi_{\sigma}(r)   -   \psi_{\sigma}^{\dagger}(r) (\nabla \psi_{\sigma}(r))  \right]
+\end{equation}
+The expression in the square bracket give the paramagnetic current density. From classical mechanics, the current density is defined by the equation
+%hvor kommer dette fra?
+\begin{equation}
+    \delta H = - q \int dr J \cdot \delta A
+\end{equation}
+Using this equation one can identify the current density
+\begin{equation}
+    J_i = \frac{\hbar}{2mi} (\psi_{\sigma}^{\dagger}(r) (\nabla_i \psi_{\sigma}(r)) - (\nabla_i  \psi_{\sigma}^{\dagger}(r)) \psi_{\sigma}(r))
+\end{equation}
+restricting the positions of the atoms to discrete positions $\vec{n}$ and discretizing the nabla operator gives
+%tror jeg diskretiserer feil
+\begin{align}
+    J_i &= \frac{\hbar}{2mi} (C_{\vec{n},\sigma}^{\dagger} \frac{C_{\vec{n + 1_i},\sigma} - C_{\vec{n},\sigma}}{a}  - \frac{C_{\vec{n + 1_i},\sigma}^{\dagger} - C_{\vec{n},\sigma}^{\dagger}}{a} C_{\vec{n},\sigma}) \hat{e}_i\\
+      &= \frac{\hbar}{2mai} (C_{\vec{n},\sigma}^{\dagger} C_{\vec{n + 1_i},\sigma} - C_{\vec{n + 1_i},\sigma}^{\dagger} C_{\vec{n},\sigma}^{\dagger})\hat{e}_i
+\end{align}
+wich gives the current 
+\begin{equation}
+    \vec{J} = \frac{\hbar}{2mai} \sum_{i=x,y}\sum_{\sigma} (C_{\vec{n},\sigma}^{\dagger} C_{\vec{n + 1_i},\sigma} - C_{\vec{n + 1_i},\sigma}^{\dagger} C_{\vec{n},\sigma})\hat{e}_i
+    \label{electric current}
+\end{equation}
+%feil prefaktor og fortegn...
+%schlawin summer over n både i hamiltonian og current
+with interaction hamiltonian 
+\begin{equation}
+    H_{int} = \sum_{\vec{n}} \vec{J} \cdot \textbf{A}((\vec{r}_{\vec{n + 1_i}} + \vec{r}_{\vec{n}})/2 )
+    \label{interaction hamiltonian general}
+\end{equation}
+\subsection{Coupling of cavity to metal}
+Using the expression for the vector potential~\ref{vector potential cavity} and electric current~\ref{electric current} in the interaction hamiltonian~\ref{interaction hamiltonian general}
+\begin{align*}
+    \begin{split}
+    H_{int} &= \sum_{\vec{n}} \left(\frac{iaet}{\hbar} \sum_{i=x,y}\sum_{\sigma} (C_{\vec{n},\sigma}^{\dagger} C_{\vec{n + 1_i},\sigma} - C_{\vec{n + 1_i},\sigma}^{\dagger} C_{\vec{n},\sigma})\hat{e}_i\right) \cdot \\     
+            &\left(i \sum_{\vec{q},s} \sqrt{\frac{\hbar}{\epsilon \epsilon_0 V w_q}} e^{i\left(q_x \left(x_{\vec{n + 1_i}} + x_{\vec{n}} \right) + q_y \left(y_{\vec{n + 1_i}} + y_{\vec{n}} \right)\right)/2} \hat{e}_{\vec{q},s}\left(a_{\vec{q},s} + a_{-\vec{q}, s}\right)\right)
+    \end{split}\\
+    %
+    \begin{split}
+    H_{int} &= \frac{-aet}{\sqrt{\hbar \epsilon \epsilon_0 V} } \sum_{\sigma,\vec{q},s} \left(a_{\vec{q},s} + a_{-\vec{q}, s}\right) \frac{1}{\sqrt{w_q}} \\ 
+            &  \sum_{i=x,y} \sum_{\vec{n}} \hat{e}_{\vec{q},s,i} (C_{\vec{n},\sigma}^{\dagger} C_{\vec{n + 1_i},\sigma} - C_{\vec{n + 1_i},\sigma}^{\dagger} C_{\vec{n},\sigma}) e^{i\left(q_x \left(x_{\vec{n + 1_i}} + x_{\vec{n}} \right) + q_y \left(y_{\vec{n + 1_i}} + y_{\vec{n}} \right)\right)/2}
+    \end{split}
+     %
+     \label{interaction hamiltonian step 1}\textbf{}
+\end{align*}
+Introducing fourier transformed operators $C_{k,\sigma} , C_{k,\sigma}^{\dagger}$
+\begin{align*}
+    \begin{split}
+    H_{int} &= \frac{-aet}{\sqrt{\hbar \epsilon \epsilon_0 V} } \sum_{\sigma,\vec{q},s} \left(a_{\vec{q},s} + a_{-\vec{q}, s}\right) \frac{1}{\sqrt{w_q}} \\ 
+            & \sum_{k,k'}   C_{\vec{k},\sigma}^{\dagger} C_{\vec{k'},\sigma} \sum_{i=x,y} \left[\frac{1}{N}\sum_{\vec{n}} \hat{e}_{\vec{q},s,i} ( e^{i\left(k \cdot r_{\vec{n}} - k' \cdot r_{\vec{n+1_i}} \right)} - e^{i\left(k \cdot r_{\vec{n+1_i}} - k' \cdot r_{\vec{n}} \right)}) e^{i\left(q_x \left(x_{\vec{n + 1_i}} + x_{\vec{n}} \right) + q_y \left(y_{\vec{n + 1_i}} + y_{\vec{n}} \right)\right)/2}\right]
+    \end{split}
+     %
+    \label{interaction hamiltonian step 2}
+\end{align*}
+Performing the summation in the square brackets setting $i = x$ and using $x_{\vec{n}},y_{\vec{n}} = a n_x, a n_y$
+\begin{align}
+    [...] &= \frac{1}{N}\sum_{n_x, n_y} \hat{e}_{\vec{q},s,x} ( e^{i a\left((k_x - k_x') n_x - k_x' + (k_y - k_y') n_y \right)} -  e^{i a\left((k_x - k_x') n_x + k_x + (k_y - k_y') n_y \right)}) e^{i a \left(q_x \left(n_x + 1/2\right) + q_y (n_y + 1/2)\right)}\\
+          &= \frac{1}{N}\sum_{n_x, n_y} \hat{e}_{\vec{q},s,x} e^{i a\left((k_x - k_x' + q_x) n_x + (k_y - k_y' + q_y) n_y \right)} e^{ia q_x / 2} ( e^{- i a k_x' } -  e^{i a k_x })\\
+          &= a \hat{e}_{\vec{q},s,x} \delta_{k_x',k_x + q_x} \delta_{k_y',k_y + q_y}  ( e^{- i a (k_x + q_x /2) } -  e^{i a (k_x + q_x/2)  })\\
+          &=   -2 i a \hat{e}_{\vec{q},s,x} \delta_{\vec{k}',\vec{k} + \vec{q}} \sin(k_x + q_x /2)\\
+\end{align}
+where in the last line we have used $\sum_n e^{ian(k - k')} = N a \delta_{k,k'}$. Performing the analogus calculation for $i = y$, equation~\ref{interaction hamiltonian step 2} becomes
+\begin{align}
+\begin{split}
+    H_{int} &=  \sum_{\vec{k},\sigma,\vec{q},s} \frac{g_{\vec{k},s}^{(\vec{q})}}{\sqrt{N}} \left(a_{\vec{q},s} + a_{-\vec{q}, s}\right) C_{\vec{k},\sigma}^{\dagger} C_{\vec{k + \vec{q}},\sigma} 
+    \end{split}
+     %
+\end{align}
+with 
+\begin{equation}
+   g_{\vec{k},s}^{(\vec{q})} = i t \sqrt{\frac{4 e^2}{\hbar \epsilon \epsilon_0 L_z}} \frac{\hat{e}_{\vec{q},s,x} sin(k_x + q_x /2) + \hat{e}_{\vec{q},s,y} \sin(k_x + q_x /2)}{\sqrt{c \sqrt{\vec{q}^2}}}
+   %Får ikke konstantene til å gå opp
+\end{equation}
+where $c = c_0 / \sqrt{\epsilon}$, we have used that $V = N a^2 L_z$
+
+\printbibliography
+
+\end{document}
