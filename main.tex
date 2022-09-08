@@ -26,12 +26,14 @@
 
 %Spørsmål jeg har til senere:
 %Hva er lattice cites i normalmetallet? Er det sånn tight binding greie?
+    %svar: er tught binding med antagelse om nesten fri. Henning mener at å anta tight binding og lattice sites kanskje er unødig.
 %Hvordan kan jeg se at E og B felt blir maksimalt på ulike steder
 %hva er greia med conservation of momentum?
 %hva er greia med anticrossings?
 %Hva betyr "resolve broken inversion symmetry in SC?
 %Er vår hamiltonian på form 4.26 s167 i atlas and simon? (har det noe å si at vi har 2 forskjellige typer partikler?
-%
+    %svar: tror det er trivielt å legge til to ekstra kordinater. Men har ikke gjort det eksplisitt
+%Hva er relasjon mellom det vi gjør og mean field theory i Simon kapittel 6.1?
 
 
 
@@ -157,12 +159,12 @@ Introducing fourier transformed operators $C_{k,\sigma} , C_{k,\sigma}^{\dagger}
 \end{align*}
 Performing the summation in the square brackets setting $i = x$ and using $x_{\vec{n}},y_{\vec{n}} = a n_x, a n_y$
 \begin{align*}
-    [...] &= \frac{1}{N}\sum_{n_x, n_y} \hat{e}_{\vec{q},s,x} ( e^{i a\left((k_x - k_x') n_x - k_x' + (k_y - k_y') n_y \right)} -  e^{i a\left((k_x - k_x') n_x + k_x + (k_y - k_y') n_y \right)}) e^{i a \left(q_x \left(n_x + 1/2\right) + q_y (n_y + 1/2)\right)}\\
+    [...] &= \frac{1}{N}\sum_{n_x, n_y} \hat{e}_{\vec{q},s,x} ( e^{i a\left((k_x - k_x') n_x + (k_y - k_y') n_y \right)} -  e^{i a\left((k_x - k_x') n_x + k_x + (k_y - k_y') n_y \right)}) e^{i a \left(q_x \left(n_x + 1/2\right) + q_y (n_y + 1/2)\right)}\\
           &= \frac{1}{N}\sum_{n_x, n_y} \hat{e}_{\vec{q},s,x} e^{i a\left((k_x - k_x' + q_x) n_x + (k_y - k_y' + q_y) n_y \right)} e^{ia q_x / 2} ( e^{- i a k_x' } -  e^{i a k_x })\\
           &= a \hat{e}_{\vec{q},s,x} \delta_{k_x',k_x + q_x} \delta_{k_y',k_y + q_y}  ( e^{- i a (k_x + q_x /2) } -  e^{i a (k_x + q_x/2)  })\\
           &=   -2 i a \hat{e}_{\vec{q},s,x} \delta_{\vec{k}',\vec{k} + \vec{q}} \sin(k_x + q_x /2)\\
 \end{align*}
-where in the last line we have used $\sum_n e^{ian(k - k')} = N a \delta_{k,k'}$. Performing the analogus calculation for $i = y$, equation~\cref{interaction hamiltonian step 2} becomes
+where in the last line we have used $\sum_n e^{ian(k - k')} = N a \delta_{k,k'}$. Performing the analogous calculation for $i = y$, equation~\cref{interaction hamiltonian step 2} becomes
 \begin{align}
 \begin{split}
     H_{int} &=  \sum_{\vec{k},\sigma,\vec{q},s} \frac{g_{\vec{k},s}^{(\vec{q})}}{\sqrt{N}} \left(a_{\vec{q},s} + a_{-\vec{q}, s}^{\dagger}\right) C_{\vec{k},\sigma}^{\dagger} C_{\vec{k} + \vec{q},\sigma} 
@@ -179,7 +181,7 @@ where $c = c_0 / \sqrt{\epsilon}$, we have used that $V = N a^2 L_z$
 
 \section{Effective electron theory}
 TODO: Må utfylle om matsubara formalisme. diskutere sym/anti-sym grensebetingelse
-TODO: referanse til atlas simon
+TODO: refer To atlas simon
 \begin{equation}
     \mathcal{Z} = \int D(C^{\dagger}, C) \int D(a^{\dagger}, a) e^{-S[C^{\dagger},C,a,a^{\dagger}] / \hbar}
     \label{path integral}
@@ -191,7 +193,7 @@ TODO: referanse til atlas simon
                                   &+ \sum_{\vec{k},\sigma,\vec{q},s} \frac{g_{\vec{k},s}^{(\vec{q})}}{\sqrt{N}} \left(a_{\vec{q},s} + a_{-\vec{q}, s}^{\dagger}\right) C_{\vec{k},\sigma}^{\dagger} C_{\vec{k} + \vec{q},\sigma}\bigg]\nonumber
     %\label{action}
 \end{align}
-Where the $(C_{\vec{k},\sigma}^{\dagger}, C_{\vec{k},\sigma})$ are Grassman numbers and $(a_{\vec{q},s}^{\dagger},a_{\vec{q},s})$ are complex numbers. It is convenient to introduce the fourier decompositions (Må man argumentere for at man kan bytte variabel i funksjonal integralet?)
+Where the $(C_{\vec{k},\sigma}^{\dagger}, C_{\vec{k},\sigma})$ are Grassman numbers and $(a_{\vec{q},s}^{\dagger},a_{\vec{q},s})$ are complex numbers. It is convenient to introduce the Fourier decompositions
 
 \begin{equation}
 C_{\vec{k},\sigma} = \frac{1}{\sqrt{\beta}}\sum_{\omega_n} C^{(n)}_{\vec{k},\sigma} e^{-i \omega_n \tau},\; C^{(n)}_{\vec{k},\sigma} = \frac{1}{\sqrt{\beta}} \int_0^{\beta} d\tau C_{\vec{k},\sigma}(\tau) e^{i \omega_n \tau}
@@ -202,20 +204,38 @@ with $\omega_n = (2n + 1)\pi\beta, n \in  \mathbb{Z}$ and
 a_{\vec{q},s} = \frac{1}{\sqrt{\beta}}\sum_{\Omega_n} a^{(n)}_{\vec{q},s} e^{-i \Omega_n \tau},\; a^{(n)}_{\vec{q},s} = \frac{1}{\sqrt{\beta}} \int_0^{\beta} d\tau a_{\vec{q},s}(\tau) e^{i \Omega_n \tau}
 \label{fourier a}
 \end{equation}
-with  $\Omega_n = 2n\pi\beta, n \in  \mathbb{Z}$. Using the fourier decompositions~\cref{fourier C} and~\cref{fourier a} in the expression for the action~\cref{action} gives
+with  $\Omega_n = 2n\pi\beta, n \in  \mathbb{Z}$. Using the Fourier decompositions~\cref{fourier C} and~\cref{fourier a} in the expression for the action~\cref{action} gives
 
 \begin{align}
     S[C^{\dagger},C,a,a^{\dagger}] &= \sum_{\vec{k},\sigma, n} C^{(n)\dagger}_{\vec{k},\sigma}\left(-i\omega_n - \mu + \epsilon_{\vec{k}}\right) C^{(n)}_{\vec{k},\sigma} \nonumber \\
                                    &+ \sum_{\vec{q},s,n} a^{(n)\dagger}_{\vec{q},s} \left(-i\Omega_n + \hbar \omega_{\vec{q}}\right) a^{(n)}_{\vec{q},s} \label{matsubara action} \\
                                    &+ \sum_{\vec{k},\sigma,\vec{q},s} \sum_{n,n',n''} \frac{g_{\vec{k},s}^{(\vec{q})}}{\sqrt{N}} \left(a^{(n)}_{\vec{q},s} \delta_{n'', -n + n'} + a^{(n)}_{-\vec{q}, s}^{\dagger}  \delta_{n'',n + n'}\right) C^{(n')\dagger}_{\vec{k},\sigma}C^{(n'')}_{\vec{k} + \vec{q},\sigma}\;.\nonumber
 \end{align}
-In order to get the effective field theory of the electrons in the metall, one must integrate over the photon degrees of freedom $a_{q,s}$ and $a_{q,s}^{\dagger}$. In order to make the integration possible, the $a$-dependent part of~\cref{matsubara action} has to be rewritten in terms of bilinear term. Using $\sum_n a^{(n)}_{\vec{q},s} \delta_{n'', -n + n'} = \sum_n a^{(-n)}_{\vec{q},s} \delta_{n'', n + n'}$ gives
+To get the effective field theory of the electrons in the metal, one must integrate over the photon degrees of freedom $a_{q,s}$ and $a_{q,s}^{\dagger}$. TO make the integration possible, the $a$-dependent part of~\cref{matsubara action} has to be rewritten as a sum of bilinear terms. Using $\sum_n a^{(n)}_{\vec{q},s} \delta_{n'', -n + n'} = \sum_n a^{(-n)}_{\vec{q},s} \delta_{n'', n + n'}$ gives
 \begin{align}
-     &\sum_{\vec{q},s,n} a^{(n)\dagger}_{\vec{q},s} \left(-i\Omega_n + \hbar \omega_{\vec{q}}\right) a^{(n)}_{\vec{q},s} + \sum_{\vec{k},\sigma,\vec{q},s} \sum_{n,n',n''} \frac{g_{\vec{k},s}^{(\vec{q})}}{\sqrt{N}} \delta_{n'',n + n'} \left(a^{(-n)}_{\vec{q},s} + a^{(n)}_{-\vec{q}, s}^{\dagger}\right) C^{(n')\dagger}_{\vec{k},\sigma}C^{(n'')}_{\vec{k} + \vec{q},\sigma}\;.\nonumber \\
-     &= \sum_{\vec{q},s,n} \left(-i\Omega_n + \hbar \omega_{\vec{q}}\right)  \left(a^{(n)\dagger}_{\vec{q},s} + \frac{\sum_{\vec{k},\sigma,\vec{q},s} \sum_{n,n',n''} \frac{g_{\vec{k},s}^{(\vec{q})}}{\sqrt{N}} \delta_{n'',-n + n'}C^{(n')\dagger}_{\vec{k},\sigma}C^{(n'')}_{\vec{k} + \vec{q},\sigma} }{\left(-i\Omega_n + \hbar \omega_{\vec{q}}\right)} \right) \nonumber\\
-     & \left(a^{(n)}_{\vec{q},s} + \frac{\sum_{\vec{k},\sigma,\vec{q},s} \sum_{n,n',n''} \frac{g_{\vec{k},s}^{(-\vec{q})}}{\sqrt{N}} \delta_{n'',n + n'}C^{(n')\dagger}_{\vec{k},\sigma}C^{(n'')}_{\vec{k} - \vec{q},\sigma} }{\left(-i\Omega_n + \hbar \omega_{-\vec{q}}\right)}\right) - effektivt \nonumber
+     &\sum_{\vec{q},s,n} a^{(n)\dagger}_{\vec{q},s} \left(-i\Omega_n + \hbar \omega_{\vec{q}}\right) a^{(n)}_{\vec{q},s} + \sum_{\vec{k},\sigma,\vec{q},s} \sum_{n,n',n''} \frac{g_{\vec{k},s}^{(\vec{q})}}{\sqrt{N}} \delta_{n'',n + n'} \left(a^{(-n)}_{\vec{q},s} + a^{(n)}_{-\vec{q}, s}^{\dagger}\right) C^{(n')\dagger}_{\vec{k},\sigma}C^{(n'')}_{\vec{k} + \vec{q},\sigma}\nonumber \\
+     %
+     &= \sum_{\vec{q},s,n} \left(-i\Omega_n + \hbar \omega_{\vec{q}}\right)  \left(a^{(n)\dagger}_{\vec{q},s} + \frac{\sum_{\vec{k'},\sigma', m'} \frac{g_{\vec{k'},s}^{(\vec{q})}}{\sqrt{N}} C^{(m')\dagger}_{\vec{k'},\sigma'}C^{(-n + m')}_{\vec{k'} + \vec{q},\sigma'} }{\left(-i\Omega_n + \hbar \omega_{\vec{q}}\right)} \right) \label{rewriting action}\\
+     %
+     & \left(a^{(n)}_{\vec{q},s} + \frac{\sum_{\vec{k},\sigma, n'} \frac{g_{\vec{k},s}^{(-\vec{q})}}{\sqrt{N}} C^{(n')\dagger}_{\vec{k},\sigma}C^{(n + n')}_{\vec{k} - \vec{q},\sigma} }{\left(-i\Omega_{n} + \hbar \omega_{\vec{q}}\right)}\right)
+     %
+     -\sum_{\vec{q},s,\vec{k},\vec{k'},\sigma,\sigma', n, n', m'} \frac{g_{\vec{k'},s}^{(\vec{q})} g_{\vec{k},s}^{(-\vec{q})}  }{N\left(-i\Omega_n + \hbar \omega_{\vec{q}}\right)}
+      C^{(m')\dagger}_{\vec{k'},\sigma'}C^{(-n + m')}_{\vec{k'} + \vec{q},\sigma'} C^{(n')\dagger}_{\vec{k},\sigma}C^{(n + n')}_{\vec{k} - \vec{q},\sigma}\nonumber \\
+     %
+     &:= \sum_{\vec{q},s,n} \left(-i\Omega_n + \hbar \omega_{\vec{q}}\right)  \bar{a}^{(n)\dagger}_{\vec{q},s}\bar{a}^{(n)}_{\vec{q},s} + H_{eff}\;.\nonumber \\
 \end{align}
-TODO: skriv på mere kompakt måte, rydd opp i summer, se over q og n fortegn (evt introduser 4-vektor), og skriv inn effektivt potensiale
+In the last line we defined the shifted coordinates  $\bar{a}^{(n)\dagger}_{\vec{q},s}$ and $\bar{a}^{(n)}_{\vec{q},s}$, and the effective hamiltonian $H_{eff}$. Using~\cref{rewriting action}, the expression for the action~\cref{matsubara action} becomes
+\begin{equation}
+     S[C^{\dagger},C,\bar{a},\bar{a}^{\dagger}] = \sum_{\vec{q},s,n} \left(-i\Omega_n + \hbar \omega_{\vec{q}}\right)  \bar{a}^{(n)\dagger}_{\vec{q},s}\bar{a}^{(n)}_{\vec{q},s} + \sum_{\vec{k},\sigma, n} \left(-i\omega_n - \mu + \epsilon_{\vec{k}}\right) C^{(n)\dagger}_{\vec{k},\sigma} C^{(n)}_{\vec{k},\sigma} +  H_{eff} \;.
+     \label{action shifted coordinates}
+\end{equation}
+Since the change of variables to $\bar{a}$ and $\bar{a}^{\dagger}$ amounted to a $a$-independent shift of $a$ and $a^{\dagger}$, the functional integration measure in \cref{path integral} remains unchanged $D(a,a^{\dagger}) = D(\bar{a},\bar{a}^{\dagger})$. 
+The $\bar{a}$-dependent part of the integral can now be computed using the Gaussian integral formula~\cite{Altland}
+\begin{equation}
+    \int D(v^{\dagger},v) e^{\sum_{i,j,n} A_{i,j}^{n} v_i^{\dagger} v_j^{\dagger}} = \frac{1}{\sqrt{\det{A}}} \;,
+    \label{gaussian integral}
+\end{equation}
+
 
 \printbibliography
 
