@@ -3,6 +3,7 @@
 \usepackage{amsmath,mathtools}
 \usepackage{biblatex}
 \usepackage{cleveref}
+\usepackage{todonotes}
 \addbibresource{prosjektoppgave.bib}
 
 \title{Prosjektoppgave}
@@ -165,15 +166,15 @@ where in the last line we have used $\sum_n e^{ian(k - k')} = N a \delta_{k,k'}$
 \end{align}
 with 
 \begin{equation}
-   g_{\vec{k},s}^{(\vec{q})} = i \tilde{g}_0 \frac{\hat{e}_{\vec{q},s,x} \sin{a(k_x + q_x /2)} + \hat{e}_{\vec{q},s,y} \sin{a(k_x + q_x /2)}}{\left(1 + \left(\frac{c\vec{q_{2d}}}{\omega_0}\right)^2\right)^{1/4}}\;.
+   g_{\vec{k},s}^{(\vec{q})} = i \tilde{g}_0 \frac{\hat{e}_{\vec{q},s,x} \sin{a(k_x + q_x /2)} + \hat{e}_{\vec{q},s,y} \sin{a(k_x + q_x /2)}}{\left(1 + \left(\frac{c\vec{q}}{\omega_0}\right)^2\right)^{1/4}}\;.
    \label{g constant}
 \end{equation}
-The constant $\tilde{g}_0 = t\sqrt{\frac{4 \alpha}{\sqrt{\epsilon}}}$ where $\alpha$ equals the fine structure constant. In the derivation of \cref{g constant} we have used that  $c = c_0 / \sqrt{\epsilon}$, $V = N a^2 L_z$, $q_z = 1$, $\vec{q}_{2d} = (2\pi q_x / L_x, 2\pi q_y / L_y) $ and $\omega_0 = c\pi / L_z$.
+The constant $\tilde{g}_0 = t\sqrt{\frac{4 \alpha}{\sqrt{\epsilon}}}$ where $\alpha$ equals the fine structure constant. In the derivation of \cref{g constant} we have redefined $\vec{q} = (2\pi q_x / L_x, 2\pi q_y / L_y) $, and used that  $c = c_0 / \sqrt{\epsilon}$, $V = N a^2 L_z$, $q_z = 1$,  and $\omega_0 = c\pi / L_z$.
 
 
 \section{Effective electron theory}
-TODO: Må utfylle om matsubara formalisme. diskutere sym/anti-sym grensebetingelse
-TODO: refer To atlas simon
+\todo{Må utfylle om matsubara formalisme. diskutere sym/anti-sym grensebetingelse}
+\todo{refer To atlas simon}
 \begin{equation}
     \mathcal{Z} = \int D(C^{\dagger}, C) \int D(a^{\dagger}, a) e^{-S[C^{\dagger},C,a^{\dagger},a] / \hbar}
     \label{path integral}
@@ -186,45 +187,45 @@ TODO: refer To atlas simon
     %\label{action}
 \end{align}
 Where the $(C_{\vec{k},\sigma}^{\dagger}, C_{\vec{k},\sigma})$ are Grassman numbers and $(a_{\vec{q},s}^{\dagger},a_{\vec{q},s})$ are complex numbers. It is convenient to introduce the Fourier decompositions
-
 \begin{equation}
-C_{\vec{k},\sigma} = \frac{1}{\sqrt{\beta}}\sum_{\omega_n} C^{(n)}_{\vec{k},\sigma} e^{-i \omega_n \tau},\; C^{(n)}_{\vec{k},\sigma} = \frac{1}{\sqrt{\beta}} \int_0^{\beta} d\tau C_{\vec{k},\sigma}(\tau) e^{i \omega_n \tau}
+C_{\vec{k},\sigma} = \frac{1}{\sqrt{\beta}}\sum_{\omega_n} C_{k,\sigma} e^{-i \omega_n \tau}\;\text{and}\; C_{k,\sigma} = \frac{1}{\sqrt{\beta}} \int_0^{\beta} d\tau C_{\vec{k},\sigma}(\tau) e^{i \omega_n \tau}\;,
 \label{fourier C}
 \end{equation}
-with $\omega_n = (2n + 1)\pi\beta, n \in  \mathbb{Z}$ and
+where we have defined the $3$-vector $k = (-\omega_n,\vec{k})$, with $\omega_n = (2n + 1)\pi / \beta, n \in  \mathbb{Z}$. Similarly, for the photon operators
 \begin{equation}
-a_{\vec{q},s} = \frac{1}{\sqrt{\beta}}\sum_{\Omega_n} a^{(n)}_{\vec{q},s} e^{-i \Omega_n \tau},\; a^{(n)}_{\vec{q},s} = \frac{1}{\sqrt{\beta}} \int_0^{\beta} d\tau a_{\vec{q},s}(\tau) e^{i \Omega_n \tau}
+a_{\vec{q},s} = \frac{1}{\sqrt{\beta}}\sum_{\Omega_n} a_{q,s} e^{-i \Omega_n \tau}\;\text{and}\; a_{q,s} = \frac{1}{\sqrt{\beta}} \int_0^{\beta} d\tau a_{\vec{q},s}(\tau) e^{i \Omega_n \tau}\;,
 \label{fourier a}
 \end{equation}
-with  $\Omega_n = 2n\pi\beta, n \in  \mathbb{Z}$. Using the Fourier decompositions~\cref{fourier C} and~\cref{fourier a} in the expression for the action~\cref{action} gives
+with $q = (-\Omega_n,\vec{q})$ and $\Omega_n = 2n\pi / \beta, n \in  \mathbb{Z}$. Using the Fourier decompositions~\cref{fourier C} and~\cref{fourier a} in the expression for the action~\cref{action} gives
 
 \begin{align}
-    S[C^{\dagger},C,a,a^{\dagger}] &= \sum_{\vec{k},\sigma, n} C^{(n)\dagger}_{\vec{k},\sigma}\left(-i\omega_n - \mu + \epsilon_{\vec{k}}\right) C^{(n)}_{\vec{k},\sigma} \nonumber \\
-                                   &+ \sum_{\vec{q},s,n} a^{(n)\dagger}_{\vec{q},s} \left(-i\Omega_n + \hbar \omega_{\vec{q}}\right) a^{(n)}_{\vec{q},s} \label{matsubara action} \\
-                                   &+ \sum_{\vec{k},\sigma,\vec{q},s} \sum_{n,n',n''} \frac{g_{\vec{k},s}^{(\vec{q})}}{\sqrt{N}} \left(a^{(n)}_{\vec{q},s} \delta_{n'', -n + n'} + a^{(n)}_{-\vec{q}, s}^{\dagger}  \delta_{n'',n + n'}\right) C^{(n')\dagger}_{\vec{k},\sigma}C^{(n'')}_{\vec{k} + \vec{q},\sigma}\;.\nonumber
+    S[C^{\dagger},C,a,a^{\dagger}] &= \sum_{k,\sigma} C^{\dagger}_{k,\sigma}\left(-i\hbar\omega_n - \mu + \epsilon_{\vec{k}}\right) C_{k,\sigma} \nonumber \\
+                                   &+ \sum_{q,s} a^{\dagger}_{q,s} \left(-i\hbar \Omega_n + \hbar \omega_{\vec{q}}\right) a_{q,s} \label{matsubara action} \\
+                                   &+ \sum_{\vec{k},\sigma,\vec{q},s} \sum_{n,n',n''} \frac{g_{\vec{k},s}^{(\vec{q})}}{\sqrt{\beta N}} \left(a^{(n)}_{\vec{q},s} \delta_{n'', -n + n'} + a^{(n)}_{-\vec{q}, s}^{\dagger}  \delta_{n'',n + n'}\right) C^{(n')\dagger}_{\vec{k},\sigma}C^{(n'')}_{\vec{k} + \vec{q},\sigma}\;.\nonumber
 \end{align}
-To get the effective field theory of the electrons in the metal, one must integrate over the photon degrees of freedom $a_{q,s}$ and $a_{q,s}^{\dagger}$. TO make the integration possible, the $a$-dependent part of~\cref{matsubara action} has to be rewritten as a sum of bilinear terms. Using $\sum_n a^{(n)}_{\vec{q},s} \delta_{n'', -n + n'} = \sum_n a^{(-n)}_{\vec{q},s} \delta_{n'', n + n'}$ gives
+\todo{holder på å skrive om til 3-vektor notasjon, og får det ikke til å gå opp i siste linje}
+To get the effective field theory of the electrons in the metal, one must integrate over the photon degrees of freedom $a_{q,s}$ and $a_{q,s}^{\dagger}$. To make the integration possible, the $a$-dependent part of~\cref{matsubara action} has to be rewritten as a sum of bilinear terms. Using $\sum_n a^{(n)}_{\vec{q},s} \delta_{n'', -n + n'} = \sum_n a^{(-n)}_{\vec{q},s} \delta_{n'', n + n'}$ gives
 \begin{align}
-     &\sum_{\vec{q},s,n} a^{(n)\dagger}_{\vec{q},s} \left(-i\Omega_n + \hbar \omega_{\vec{q}}\right) a^{(n)}_{\vec{q},s} + \sum_{\vec{k},\sigma,\vec{q},s} \sum_{n,n',n''} \frac{g_{\vec{k},s}^{(\vec{q})}}{\sqrt{N}} \delta_{n'',n + n'} \left(a^{(-n)}_{\vec{q},s} + a^{(n)}_{-\vec{q}, s}^{\dagger}\right) C^{(n')\dagger}_{\vec{k},\sigma}C^{(n'')}_{\vec{k} + \vec{q},\sigma}\nonumber \\
+     &\sum_{\vec{q},s,n} a^{(n)\dagger}_{\vec{q},s} \left(-i\hbar\Omega_n + \hbar \omega_{\vec{q}}\right) a^{(n)}_{\vec{q},s} + \sum_{\vec{k},\sigma,\vec{q},s} \sum_{n,n',n''} \frac{g_{\vec{k},s}^{(\vec{q})}}{\sqrt{\beta N}} \delta_{n'',n + n'} \left(a^{(-n)}_{\vec{q},s} + a^{(n)}_{-\vec{q}, s}^{\dagger}\right) C^{(n')\dagger}_{\vec{k},\sigma}C^{(n'')}_{\vec{k} + \vec{q},\sigma}\nonumber \\
      %
-     &= \sum_{\vec{q},s,n} \left(-i\Omega_n + \hbar \omega_{\vec{q}}\right)  \left(a^{(n)\dagger}_{\vec{q},s} + \frac{\sum_{\vec{k'},\sigma', m'} \frac{g_{\vec{k'},s}^{(\vec{q})}}{\sqrt{N}} C^{(m')\dagger}_{\vec{k'},\sigma'}C^{(-n + m')}_{\vec{k'} + \vec{q},\sigma'} }{\left(-i\Omega_n + \hbar \omega_{\vec{q}}\right)} \right) \label{rewriting action}\\
+     &= \sum_{\vec{q},s,n} \left(-i\hbar\Omega_n + \hbar \omega_{\vec{q}}\right)  \left(a^{(n)\dagger}_{\vec{q},s} + \frac{\sum_{\vec{k'},\sigma', m'} \frac{g_{\vec{k'},s}^{(\vec{q})}}{\sqrt{\beta N}} C^{(m')\dagger}_{\vec{k'},\sigma'}C^{(-n + m')}_{\vec{k'} + \vec{q},\sigma'} }{\left(-i\hbar\Omega_n + \hbar \omega_{\vec{q}}\right)} \right) \label{rewriting action}\\
      %
-     & \left(a^{(n)}_{\vec{q},s} + \frac{\sum_{\vec{k},\sigma, n'} \frac{g_{\vec{k},s}^{(-\vec{q})}}{\sqrt{N}} C^{(n')\dagger}_{\vec{k},\sigma}C^{(n + n')}_{\vec{k} - \vec{q},\sigma} }{\left(-i\Omega_{n} + \hbar \omega_{\vec{q}}\right)}\right)
+     & \left(a^{(n)}_{\vec{q},s} + \frac{\sum_{\vec{k},\sigma, n'} \frac{g_{\vec{k},s}^{(-\vec{q})}}{\sqrt{\beta N}} C^{(n')\dagger}_{\vec{k},\sigma}C^{(n + n')}_{\vec{k} - \vec{q},\sigma} }{\left(-i\Omega_{n} + \hbar \omega_{\vec{q}}\right)}\right)
      %
-     -\sum_{\vec{q},s,\vec{k},\vec{k'},\sigma,\sigma', n, n', m'} \frac{g_{\vec{k'},s}^{(\vec{q})} g_{\vec{k},s}^{(-\vec{q})}  }{N\left(-i\Omega_n + \hbar \omega_{\vec{q}}\right)}
+     -\sum_{\vec{q},s,\vec{k},\vec{k'},\sigma,\sigma', n, n', m'} \frac{g_{\vec{k'},s}^{(\vec{q})} g_{\vec{k},s}^{(-\vec{q})}  }{\beta N\left(-i\hbar\Omega_n + \hbar \omega_{\vec{q}}\right)}
       C^{(m')\dagger}_{\vec{k'},\sigma'}C^{(-n + m')}_{\vec{k'} + \vec{q},\sigma'} C^{(n')\dagger}_{\vec{k},\sigma}C^{(n + n')}_{\vec{k} - \vec{q},\sigma}\nonumber \\
      %
-     &:= \sum_{\vec{q},s,n} \left(-i\Omega_n + \hbar \omega_{\vec{q}}\right)  \bar{a}^{(n)\dagger}_{\vec{q},s}\bar{a}^{(n)}_{\vec{q},s} + H_{eff}\;.\nonumber \\
+     &:= \sum_{\vec{q},s,n} \left(-i\hbar\Omega_n + \hbar \omega_{\vec{q}}\right)  \bar{a}^{(n)\dagger}_{\vec{q},s}\bar{a}^{(n)}_{\vec{q},s} + S^{e-e}_{eff}\;.\nonumber \\
 \end{align}
-In the last line we defined the shifted coordinates  $\bar{a}^{(n)\dagger}_{\vec{q},s}$ and $\bar{a}^{(n)}_{\vec{q},s}$, and the effective hamiltonian
+In the last line we defined the shifted coordinates  $\bar{a}^{(n)\dagger}_{\vec{q},s}$ and $\bar{a}^{(n)}_{\vec{q},s}$, and introduced the effective action
 \begin{equation}
-    H_{eff} = -\sum_{\vec{q},s,\vec{k},\vec{k'},\sigma,\sigma', n, n', m'} \frac{g_{\vec{k'},s}^{(\vec{q})} g_{\vec{k},s}^{(-\vec{q})}  }{N\left(-i\Omega_n + \hbar \omega_{\vec{q}}\right)}
+    S^{e-e}_{eff} = -\sum_{\vec{q},s,\vec{k},\vec{k'},\sigma,\sigma', n, n', m'} \frac{g_{\vec{k'},s}^{(\vec{q})} g_{\vec{k},s}^{(-\vec{q})}  }{N\left(-i\hbar\Omega_n + \hbar \omega_{\vec{q}}\right)}
       C^{(m')\dagger}_{\vec{k'},\sigma'}C^{(-n + m')}_{\vec{k'} + \vec{q},\sigma'} C^{(n')\dagger}_{\vec{k},\sigma}C^{(n + n')}_{\vec{k} - \vec{q},\sigma}\;. 
     \label{effective hamiltonian}
 \end{equation}
 Using~\cref{rewriting action}, the expression for the action~\cref{matsubara action} becomes
 \begin{equation}
-     S[C^{\dagger},C,\bar{a},\bar{a}^{\dagger}] = \sum_{\vec{q},s,n} \left(-i\Omega_n + \hbar \omega_{\vec{q}}\right)  \bar{a}^{(n)\dagger}_{\vec{q},s}\bar{a}^{(n)}_{\vec{q},s} + \sum_{\vec{k},\sigma, n} \left(-i\omega_n - \mu + \epsilon_{\vec{k}}\right) C^{(n)\dagger}_{\vec{k},\sigma} C^{(n)}_{\vec{k},\sigma} +  H_{eff} \;.
+     S[C^{\dagger},C,\bar{a},\bar{a}^{\dagger}] = \sum_{\vec{q},s,n} \left(-i\hbar\Omega_n + \hbar \omega_{\vec{q}}\right)  \bar{a}^{(n)\dagger}_{\vec{q},s}\bar{a}^{(n)}_{\vec{q},s} + \sum_{\vec{k},\sigma, n} \left(-i\hbar\omega_n - \mu + \epsilon_{\vec{k}}\right) C^{(n)\dagger}_{\vec{k},\sigma} C^{(n)}_{\vec{k},\sigma} +  S^{e-e}_{eff} \;.
      \label{action shifted coordinates}
 \end{equation}
 Since the change of variables to $\bar{a}$ and $\bar{a}^{\dagger}$ amounted to a $a$-independent shift of $a$ and $a^{\dagger}$, the functional integration measure in \cref{path integral} remains unchanged $D(a,a^{\dagger}) = D(\bar{a},\bar{a}^{\dagger})$. 
@@ -240,7 +241,7 @@ The result of the ${a}$-integration is a multiplicative constant in the partitio
 \end{equation} 
 with the effetive action
 \begin{equation}
-    S_{eff}[C^{\dagger},C] = \sum_{\vec{k},\sigma, n} \left(-i\omega_n - \mu + \epsilon_{\vec{k}}\right) C^{(n)\dagger}_{\vec{k},\sigma} C^{(n)}_{\vec{k},\sigma} +  H_{eff} \;.
+    S_{eff}[C^{\dagger},C] = \sum_{\vec{k},\sigma, n} \left(-i\hbar\omega_n - \mu + \epsilon_{\vec{k}}\right) C^{(n)\dagger}_{\vec{k},\sigma} C^{(n)}_{\vec{k},\sigma} +  S^{e-e}_{eff} \;.
     \label{effective action}
 \end{equation}
 
