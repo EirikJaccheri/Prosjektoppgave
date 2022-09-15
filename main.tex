@@ -15,14 +15,6 @@
 \setlength{\headsep}{5pt}
 \setlength{\textheight}{700pt} 
 
-%TODO 6sep
-% relater effektiv masse til t fra tight binding modell Done
-
-% 1 tallet kommer fra l_z = 1, rydd opp i konstanter. Mangler det en faktor 2? Done
-
-% Integrer ut kaviteten og dan den effektive teorien for elektronene. skal likne på likning s28 i schlawin eller 55 i paper 2 andreas. Done (tror jeg)
- 
-% Gå over å sjekk at likninger har fornuftige labels og tar del i setninger. Done 
 
 
 %Spørsmål jeg har til senere:
@@ -35,7 +27,7 @@
 %Er vår hamiltonian på form 4.26 s167 i atlas and simon? (har det noe å si at vi har 2 forskjellige typer partikler?
     %svar: tror det er trivielt å legge til to ekstra kordinater. Men har ikke gjort det eksplisitt
 %Hva er relasjon mellom det vi gjør og mean field theory i Simon kapittel 6.1?
-
+    %svar: jeg blandet effective og mean field theory. I kap 3 skal jeg gjøre effective field theory som i 6.1
 
 
 \begin{document}
@@ -50,42 +42,42 @@
 %Burde introdusere orthogonale modefunksjoner for at kvantisering skal gi mening?
 We follow the derivation in \cite{QuantizationEMCavities} for the quantization of the electromagnetic modes inside a rectangular cavity with side lengths $L_x$, $L_y$ and $L_z$. The walls in the $z$-direction are assumed to be perfectly conducting, leading to the boundary conditions $\textbf{E}|_{tan} = B|_{norm} = 0$ at $z=0$ and $z = L_z$. Furthermore we assume that $L_x, L_y >> L_z$ allowing us to impose periodic boundary conditions in the $x$ and $y$-directions. These boundary conditions are satisfied by the vector potential
 \begin{equation}
-    \textbf{A} = \sum_{\vec{q},i} \sqrt{\frac{\hbar}{2 \epsilon \epsilon_0 V w_q}} \left(b_{\vec{q}, i} u_{\vec{q},i} + b_{\vec{q}, i}^{*} u_{\vec{q},i}^{\dagger}\right)\;,
+    \textbf{A} = \sum_{\textbf{q},i} \sqrt{\frac{\hbar}{2 \epsilon \epsilon_0 V w_q}} \left(b_{\textbf{q}, i} u_{\textbf{q},i} + b_{\textbf{q}, i}^{*} u_{\textbf{q},i}^{\dagger}\right)\;,
     \label{classical vector potential}
 \end{equation}
 with the mode functions
 \begin{align}
-    u_{\vec{q}, x} = u_{\vec{q}, y} &= \sqrt{\frac{2}{V}} e^{iq_x x} e^{iq_y y} i \sin{q_z z}\nonumber\\
-                     u_{\vec{q}, z} &= \sqrt{\frac{2}{V}} e^{iq_x x} e^{iq_y y} \cos{q_z z} \label{mode functions}\;,
+    u_{\textbf{q}, x} = u_{\textbf{q}, y} &= \sqrt{\frac{2}{V}} e^{iq_x x} e^{iq_y y} i \sin{q_z z}\nonumber\\
+                     u_{\textbf{q}, z} &= \sqrt{\frac{2}{V}} e^{iq_x x} e^{iq_y y} \cos{q_z z} \label{mode functions}\;,
 \end{align}
 
 %hvorfor må b-ene v-være akkurat slik=
-where $V$ is the volume of the cavity, $\omega_{\vec{q}}$ is the frequency of the electromagnetic wave and $b_{\vec{q}, i}$ is the field amplitude in the $\hat{e}_i$ direction. The wave vector can take the values $\vec{q} = (2\pi q_x / L_x, 2\pi q_y / L_y, \pi q_z / L_z )$, with $q_x, q_y = 0, \pm 1, \pm 2...$ and $q_z = 0, 1, 2...$. 
+where $V$ is the volume of the cavity, $\omega_{\textbf{q}}$ is the frequency of the electromagnetic wave and $b_{\textbf{q}, i}$ is the field amplitude in the $\hat{e}_i$ direction. The wave vector can take the values $\textbf{q} = (2\pi q_x / L_x, 2\pi q_y / L_y, \pi q_z / L_z )$, with $q_x, q_y = 0, \pm 1, \pm 2...$ and $q_z = 0, 1, 2...$. 
 
-Because of the gauge freedom in the vector potential  $\textbf{A}$, the field amplitudes are not independent.  Choosing the Coulomb gauge, the vector potential must be transversal $\textbf{A} \cdot \vec{q} = 0$ . It is convenient to rotate to a new basis $\bar{e}_{\vec{q}, s}, s \in (1,2,3)$, where the new $z$-axis (labeled by $3$) is parallel to $\vec{q}$. The new basis vectors are given by $\bar{e}_{\vec{q}, s} = \sum_i O^{\vec{q}}_{si} \hat{e}_i $, with
+Because of the gauge freedom in the vector potential  $\textbf{A}$, the field amplitudes are not independent.  Choosing the Coulomb gauge, the vector potential must be transversal $\textbf{A} \cdot \textbf{q} = 0$ . It is convenient to rotate to a new basis $\bar{e}_{\textbf{q}, s}, s \in (1,2,3)$, where the new $z$-axis (labeled by $3$) is parallel to $\textbf{q}$. The new basis vectors are given by $\bar{e}_{\textbf{q}, s} = \sum_i O^{\textbf{q}}_{si} \hat{e}_i $, with
 \begin{equation}
-    O^{\vec{q}} = \begin{pmatrix} 
+    O^{\textbf{q}} = \begin{pmatrix} 
     \cos{\theta}\cos{\phi} & \cos{\theta}\sin{\phi} & - \sin{\theta} \\ 
     -\sin{\phi}            & \cos{\phi}             & 0 \\
     \sin{\phi}\cos{\phi}   & \sin{\theta}\sin{\phi} & \cos{\theta}
     \end{pmatrix}\;,
 \end{equation}
-where the angles $\theta$, $\phi$ depend on $\vec{q}$. The field amplitudes in this basis become $a_{\vec{q},s} = \sum_i O^{\vec{q}}_{s,i} b_{\vec{q}, i}$ and $a_{\vec{q},s}^{*} = \sum_i O^{\vec{q}}_{s,i} b_{\vec{q}, i}^{*}$. Written in this basis, the vector potential becomes
+where the angles $\theta$, $\phi$ depend on $\textbf{q}$. The field amplitudes in this basis become $a_{\textbf{q},s} = \sum_i O^{\textbf{q}}_{s,i} b_{\textbf{q}, i}$ and $a_{\textbf{q},s}^{*} = \sum_i O^{\textbf{q}}_{s,i} b_{\textbf{q}, i}^{*}$. Written in this basis, the vector potential becomes
 
 \begin{equation}
-\textbf{A} = \sum_{\vec{q}, s} \sqrt{\frac{\hbar}{2 \epsilon \epsilon_0 V w_q}} \left(a_{\vec{q},s} \bar{u}_{\vec{q},s} + a_{\vec{q},s}^{*} \bar{u}_{\vec{q},s}^{\dagger}\right)\;,
+\textbf{A} = \sum_{\textbf{q}, s} \sqrt{\frac{\hbar}{2 \epsilon \epsilon_0 V w_q}} \left(a_{\textbf{q},s} \bar{u}_{\textbf{q},s} + a_{\textbf{q},s}^{*} \bar{u}_{\textbf{q},s}^{\dagger}\right)\;,
 \end{equation}
-where we have defined the new mode functions $\bar{u}_{\vec{q},s} = \sum_i e_{q,i} O^{\vec{q}}_{s,i} u_{\vec{q}, i}$. Using the facts that the field amplitudes are now independent and that the mode functions are orthogonal $\int_c \bar{u}_{\vec{q},s} \cdot \bar{u}_{\vec{q}',s'} = \delta_{s,s'}\delta_{\vec{q},\vec{q}'} $ the field amplitudes can be quantized using the canonical quantization procedure~\cite{Altland}
+where we have defined the new mode functions $\bar{u}_{\textbf{q},s} = \sum_i e_{q,i} O^{\textbf{q}}_{s,i} u_{\textbf{q}, i}$. Using the facts that the field amplitudes are now independent and that the mode functions are orthogonal $\int_c \bar{u}_{\textbf{q},s} \cdot \bar{u}_{\textbf{q}',s'} = \delta_{s,s'}\delta_{\textbf{q},\textbf{q}'} $, the field amplitudes can be quantized using the canonical quantization procedure~\cite{Altland}
 \begin{equation}
-\textbf{A} = \sum_{\vec{q}, s} \sqrt{\frac{\hbar}{2 \epsilon \epsilon_0 V w_q}} \left(a_{\vec{q},s} \bar{u}_{\vec{q},s} + a_{\vec{q},s}^{\dagger} \bar{u}_{\vec{q},s}^{\dagger}\right)\;, 
+\textbf{A} = \sum_{\textbf{q}, s} \sqrt{\frac{\hbar}{2 \epsilon \epsilon_0 V w_q}} \left(a_{\textbf{q},s} \bar{u}_{\textbf{q},s} + a_{\textbf{q},s}^{\dagger} \bar{u}_{\textbf{q},s}^{\dagger}\right)\;, 
 \end{equation}
 with the comutation relations
 \begin{equation}
-    \left[a_{\vec{q},s}, a_{\vec{q'},s'}\right] = \left[a_{\vec{q},s}^{\dagger}, a_{\vec{q'},s'}^{\dagger}\right] = 0, \left[a_{\vec{q},s}, a_{\vec{q'},s'}^{\dagger}\right] = i \hbar \delta_{\vec{q}, \vec{q}'} \delta_{s,s'}\;.
+    \left[a_{\textbf{q},s}, a_{\textbf{q'},s'}\right] = \left[a_{\textbf{q},s}^{\dagger}, a_{\textbf{q'},s'}^{\dagger}\right] = 0, \left[a_{\textbf{q},s}, a_{\textbf{q'},s'}^{\dagger}\right] = i \hbar \delta_{\textbf{q}, \textbf{q}'} \delta_{s,s'}\;.
 \end{equation}
-Using \cref{mode functions}, taking $q_z = 1$, evaluating the vector potential at $\pi z_0 / L = \pi / 2$ and the fact that $u_{\vec{q},s}^{\dagger} = u_{\vec{\bar{q}},s}̃$ ($\vec{\bar{q}} = (-q_x, -q_y, q_z)$ ) gives the final expression 
+Using \cref{mode functions}, taking $q_z = 1$, evaluating the vector potential at $\pi z_0 / L = \pi / 2$ and the fact that $u_{\textbf{q},s}^{\dagger} = u_{\textbf{\bar{q}},s}̃$ ($\textbf{\bar{q}} = (-q_x, -q_y, q_z)$ ) gives the final expression 
 \begin{equation}
-    \textbf{A} = i \sum_{\vec{q},s} \sqrt{\frac{\hbar}{\epsilon \epsilon_0 V w_q}} e^{i(q_x x + q_y y )} \hat{e}_{\vec{q},s}\left(a_{\vec{q},s} + a_{-\vec{q}, s}^{\dagger}\right) \;.
+    \textbf{A} = i \sum_{\textbf{q},s} \sqrt{\frac{\hbar}{\epsilon \epsilon_0 V w_q}} e^{i(q_x x + q_y y )} \hat{e}_{\textbf{q},s}\left(a_{\textbf{q},s} + a_{-\textbf{q}, s}^{\dagger}\right) \;.
     \label{vector potential cavity}
 \end{equation}
 %hvorfor kan vi nå kvantisere?
@@ -114,62 +106,67 @@ Using \cref{current classical mech} one can identify the paramagnetic current de
 \begin{equation}
     J_i = \frac{q \hbar}{2mi} (\psi_{\sigma}^{\dagger}(r) (\nabla_i \psi_{\sigma}(r)) - (\nabla_i  \psi_{\sigma}^{\dagger}(r)) \psi_{\sigma}(r))\;.
 \end{equation}
-Restricting the positions of the atoms to discrete positions $\vec{n}$ and discretizing the nabla operator gives
+Restricting the positions of the atoms to discrete positions $\textbf{n}$ and discretizing the nabla operator gives
 \begin{align}
-    J_i &= \frac{q \hbar}{2mi} (C_{\vec{n},\sigma}^{\dagger} \frac{C_{\vec{n + 1_i},\sigma} - C_{\vec{n},\sigma}}{a}  - \frac{C_{\vec{n + 1_i},\sigma}^{\dagger} - C_{\vec{n},\sigma}^{\dagger}}{a} C_{\vec{n},\sigma}) \hat{e}_i\nonumber\\
-      &= \frac{q \hbar}{2mai} (C_{\vec{n},\sigma}^{\dagger} C_{\vec{n + 1_i},\sigma} - C_{\vec{n + 1_i},\sigma}^{\dagger} C_{\vec{n},\sigma}^{\dagger})\hat{e}_i\;.\label{current component} 
+    J_i &= \frac{q \hbar}{2mi} (C_{\textbf{n},\sigma}^{\dagger} \frac{C_{\textbf{n} + \textbf{1}_i,\sigma} - C_{\textbf{n},\sigma}}{a}  - \frac{C_{\textbf{n} + \textbf{1}_i,\sigma}^{\dagger} - C_{\textbf{n},\sigma}^{\dagger}}{a} C_{\textbf{n},\sigma}) \hat{e}_i\nonumber\\
+      &= \frac{q \hbar}{2mai} (C_{\textbf{n},\sigma}^{\dagger} C_{\textbf{n} + \textbf{1}_i,\sigma} - C_{\textbf{n} + \textbf{1}_i,\sigma}^{\dagger} C_{\textbf{n},\sigma}^{\dagger})\hat{e}_i\;.\label{current component} 
 \end{align}
 Using \cref{current component} and the expression for the effective mass of a electron in a tight binding model $m^* = \frac{\hbar^2}{t a^2}$, the current vector becomes
 \begin{equation}
-    \vec{J} = i\frac{a q t}{2\hbar} \sum_{i=x,y}\sum_{\sigma} \left( C_{\vec{n + 1_i},\sigma}^{\dagger} C_{\vec{n},\sigma} - C_{\vec{n},\sigma}^{\dagger} C_{\vec{n + 1_i},\sigma} \right)\hat{e}_i\;.
+    \textbf{J} = \frac{a q t}{2i\hbar} \sum_{i=x,y}\sum_{\sigma} \left( C_{\textbf{n},\sigma}^{\dagger} C_{\textbf{n} + \textbf{1}_i,\sigma} - C_{\textbf{n} + \textbf{1}_i,\sigma}^{\dagger} C_{\textbf{n},\sigma}\right)\hat{e}_i\;.
     \label{electric current}
 \end{equation}
 The paramagnetic interaction hamiltonian becomes 
 \begin{equation}
-    H_{int} = \sum_{\vec{n}} \vec{J} \cdot \textbf{A}((\vec{r}_{\vec{n + 1_i}} + \vec{r}_{\vec{n}})/2 )\;.
+    H_{int} = \sum_{\textbf{n}} \textbf{J} \cdot \textbf{A}((\textbf{r}_{\textbf{n} + \textbf{1}_i} + \textbf{r}_{\textbf{n}})/2 )\;.
     \label{interaction hamiltonian general}
 \end{equation}
 \subsection{Coupling of cavity to metal}
-Using the expression for the vector potential~\cref{vector potential cavity} and electric current~\cref{electric current} in the interaction hamiltonian~\cref{interaction hamiltonian general}
+Using the expression for the vector potential~\cref{vector potential cavity} and electric current~\cref{electric current} in the paramagnetic interaction hamiltonian~\cref{interaction hamiltonian general}, gives the interaction Hamiltonian
 \begin{align*}
     \begin{split}
-    H_{int} &= \sum_{\vec{n}} \left(\frac{iaet}{2\hbar} \sum_{i=x,y}\sum_{\sigma} (C_{\vec{n},\sigma}^{\dagger} C_{\vec{n + 1_i},\sigma} - C_{\vec{n + 1_i},\sigma}^{\dagger} C_{\vec{n},\sigma})\hat{e}_i\right) \cdot \\     
-            &\left(i \sum_{\vec{q},s} \sqrt{\frac{\hbar}{\epsilon \epsilon_0 V w_q}} e^{i\left(q_x \left(x_{\vec{n + 1_i}} + x_{\vec{n}} \right) + q_y \left(y_{\vec{n + 1_i}} + y_{\vec{n}} \right)\right)/2} \hat{e}_{\vec{q},s}\left(a_{\vec{q},s} + a_{-\vec{q}, s}^{\dagger}\right)\right)
+    H_{int} &= \sum_{\textbf{n}} \left(\frac{aet}{2i\hbar} \sum_{i=x,y}\sum_{\sigma} (C_{\textbf{n},\sigma}^{\dagger} C_{\textbf{n} + \textbf{1}_i,\sigma} - C_{\textbf{n} + \textbf{1}_i,\sigma}^{\dagger} C_{\textbf{n},\sigma})\hat{e}_i\right) \cdot \\     
+            &\left(i \sum_{\textbf{q},s} \sqrt{\frac{\hbar}{\epsilon \epsilon_0 V w_q}} e^{i\left(q_x \left(x_{\textbf{n} + \textbf{1}_i} + x_{\textbf{n}} \right) + q_y \left(y_{\textbf{n} + \textbf{1}_i} + y_{\textbf{n}} \right)\right)/2} \hat{e}_{\textbf{q},s}\left(a_{\textbf{q},s} + a_{-\textbf{q}, s}^{\dagger}\right)\right)
     \end{split}\\
     %
     \begin{split}
-            &= \frac{-aet}{2\sqrt{\hbar \epsilon \epsilon_0 V} } \sum_{\sigma,\vec{q},s} \left(a_{\vec{q},s} + a_{-\vec{q}, s}^{\dagger}\right) \frac{1}{\sqrt{w_q}} \\ 
-            &  \sum_{i=x,y} \sum_{\vec{n}} \hat{e}_{\vec{q},s,i} (C_{\vec{n},\sigma}^{\dagger} C_{\vec{n + 1_i},\sigma} - C_{\vec{n + 1_i},\sigma}^{\dagger} C_{\vec{n},\sigma}) e^{i\left(q_x \left(x_{\vec{n + 1_i}} + x_{\vec{n}} \right) + q_y \left(y_{\vec{n + 1_i}} + y_{\vec{n}} \right)\right)/2}
+            &= \frac{aet}{2\sqrt{\hbar \epsilon \epsilon_0 V} } \sum_{\sigma,\textbf{q},s} \left(a_{\textbf{q},s} + a_{-\textbf{q}, s}^{\dagger}\right) \frac{1}{\sqrt{w_q}} \\ 
+            &  \sum_{i=x,y} \sum_{\textbf{n}} \hat{e}_{\textbf{q},s,i} (C_{\textbf{n},\sigma}^{\dagger} C_{\textbf{n} + \textbf{1}_i,\sigma} - C_{\textbf{n} + \textbf{1}_i,\sigma}^{\dagger} C_{\textbf{n},\sigma}) e^{i\left(q_x \left(x_{\textbf{n} + \textbf{1}_i} + x_{\textbf{n}} \right) + q_y \left(y_{\textbf{n} + \textbf{1}_i} + y_{\textbf{n}} \right)\right)/2}\;.
     \end{split}
      %
      \label{interaction hamiltonian step 1}\textbf{}
 \end{align*}
-Introducing fourier transformed operators $C_{k,\sigma} , C_{k,\sigma}^{\dagger}$
+This Hamiltonian describes the interaction between the photons in the cavity and the electrons in the metal. Introducing the Fourier transformed operator
+\begin{equation}
+C_{\textbf{k},\sigma} = \frac{1}{\sqrt{N}} \sum_{\textbf{n}} C_{\textbf{n},\sigma} e^{-i\textbf{r}_{\textbf{n}} \cdot \textbf{k}}\;,
+\label{fourier electron operator}
+\end{equation}
+gives
 \begin{align*}
     \begin{split}
-    H_{int} &= \frac{-aet}{2\sqrt{\hbar \epsilon \epsilon_0 V} } \sum_{\sigma,\vec{q},s} \left(a_{\vec{q},s} + a_{-\vec{q}, s}^{\dagger}\right) \frac{1}{\sqrt{w_q}} \\ 
-            & \sum_{k,k'}   C_{\vec{k},\sigma}^{\dagger} C_{\vec{k'},\sigma} \sum_{i=x,y} \left[\frac{1}{N}\sum_{\vec{n}} \hat{e}_{\vec{q},s,i} ( e^{i\left(k \cdot r_{\vec{n}} - k' \cdot r_{\vec{n+1_i}} \right)} - e^{i\left(k \cdot r_{\vec{n+1_i}} - k' \cdot r_{\vec{n}} \right)}) e^{i\left(q_x \left(x_{\vec{n + 1_i}} + x_{\vec{n}} \right) + q_y \left(y_{\vec{n + 1_i}} + y_{\vec{n}} \right)\right)/2}\right]
+    H_{int} &= \frac{aet}{2\sqrt{\hbar \epsilon \epsilon_0 V} } \sum_{\sigma,\textbf{q},s} \left(a_{\textbf{q},s} + a_{-\textbf{q}, s}^{\dagger}\right) \frac{1}{\sqrt{w_q}} \\ 
+            & \sum_{k,k'}   C_{\textbf{k'},\sigma}^{\dagger} C_{\textbf{k},\sigma} \sum_{i=x,y} \left[\frac{1}{N}\sum_{\textbf{n}} \hat{e}_{\textbf{q},s,i} ( e^{i\left(k \cdot r_{\textbf{n}+\textbf{1}_i} - k' \cdot r_{\textbf{n}} \right)} - e^{i\left(k \cdot r_{\textbf{n}} - k' \cdot r_{\textbf{n}+\textbf{1}_i}\right)}) e^{i\left(q_x \left(x_{\textbf{n} + \textbf{1}_i} + x_{\textbf{n}} \right) + q_y \left(y_{\textbf{n} + \textbf{1}_i} + y_{\textbf{n}} \right)\right)/2}\right]\;.
     \end{split}
      %
     \label{interaction hamiltonian step 2}
 \end{align*}
-Performing the summation in the square brackets setting $i = x$ and using $x_{\vec{n}},y_{\vec{n}} = a n_x, a n_y$
+Performing the summation in the square brackets setting $i = x$ and using $x_{\textbf{n}},y_{\textbf{n}} = a n_x, a n_y$
 \begin{align*}
-    [...] &= \frac{1}{N}\sum_{n_x, n_y} \hat{e}_{\vec{q},s,x} ( e^{i a\left((k_x - k_x') n_x + (k_y - k_y') n_y \right)} -  e^{i a\left((k_x - k_x') n_x + k_x + (k_y - k_y') n_y \right)}) e^{i a \left(q_x \left(n_x + 1/2\right) + q_y (n_y + 1/2)\right)}\\
-          &= \frac{1}{N}\sum_{n_x, n_y} \hat{e}_{\vec{q},s,x} e^{i a\left((k_x - k_x' + q_x) n_x + (k_y - k_y' + q_y) n_y \right)} e^{ia q_x / 2} ( e^{- i a k_x' } -  e^{i a k_x })\\
-          &= a \hat{e}_{\vec{q},s,x} \delta_{k_x',k_x + q_x} \delta_{k_y',k_y + q_y}  ( e^{- i a (k_x + q_x /2) } -  e^{i a (k_x + q_x/2)  })\\
-          &=   -2 i a \hat{e}_{\vec{q},s,x} \delta_{\vec{k}',\vec{k} + \vec{q}} \sin(k_x + q_x /2)\\
+    [...] &= \frac{1}{N}\sum_{n_x, n_y} \hat{e}_{\textbf{q},s,x} ( e^{i a\left((k_x - k_x') n_x + k_x + (k_y - k_y') n_y \right)} -  e^{i a\left((k_x - k_x') n_x - k_x' + (k_y - k_y') n_y \right)}) e^{i a \left(q_x \left(n_x + 1/2\right) + q_y (n_y + 1/2)\right)}\\
+          &= \frac{1}{N}\sum_{n_x, n_y} \hat{e}_{\textbf{q},s,x} e^{i a\left((k_x - k_x' + q_x) n_x + (k_y - k_y' + q_y) n_y \right)} e^{ia q_x / 2} ( e^{i a k_x } -  e^{-i a k_x' })\\
+          &= a \hat{e}_{\textbf{q},s,x} \delta_{k_x',k_x + q_x} \delta_{k_y',k_y + q_y}  ( e^{i a (k_x + q_x /2) } -  e^{-i a (k_x + q_x/2)  })\\
+          &= 2 i a \hat{e}_{\textbf{q},s,x} \delta_{\textbf{k}',\textbf{k} + \textbf{q}} \sin(k_x + q_x /2)\\
 \end{align*}
 where in the last line we have used $\sum_n e^{ian(k - k')} = N a \delta_{k,k'}$. Performing the analogous calculation for $i = y$, equation~\cref{interaction hamiltonian step 2} becomes
 \begin{align}
-    H_{int} &=  \sum_{\vec{k},\sigma,\vec{q},s} \frac{g_{\vec{k},s}^{(\vec{q})}}{\sqrt{N}} \left(a_{\vec{q},s} + a_{-\vec{q}, s}^{\dagger}\right) C_{\vec{k},\sigma}^{\dagger} C_{\vec{k} + \vec{q},\sigma} \;,
+    H_{int} &=  \sum_{\textbf{k},\sigma,\textbf{q},s} \frac{g_{\textbf{k},s}^{(\textbf{q})}}{\sqrt{N}} \left(a_{\textbf{q},s} + a_{-\textbf{q}, s}^{\dagger}\right) C_{\textbf{k} + \textbf{q},\sigma}^{\dagger} C_{\textbf{k},\sigma} \;,
 \end{align}
 with 
 \begin{equation}
-   g_{\vec{k},s}^{(\vec{q})} = i \tilde{g}_0 \frac{\hat{e}_{\vec{q},s,x} \sin{a(k_x + q_x /2)} + \hat{e}_{\vec{q},s,y} \sin{a(k_x + q_x /2)}}{\left(1 + \left(\frac{c\vec{q}}{\omega_0}\right)^2\right)^{1/4}}\;.
+   g_{\textbf{k},s}^{(\textbf{q})} = i \tilde{g}_0 \frac{\hat{e}_{\textbf{q},s,x} \sin{a(k_x + q_x /2)} + \hat{e}_{\textbf{q},s,y} \sin{a(k_y + q_y /2)}}{\left(1 + \left(\frac{c\textbf{q}}{\omega_0}\right)^2\right)^{1/4}}\;.
    \label{g constant}
 \end{equation}
-The constant $\tilde{g}_0 = t\sqrt{\frac{4 \alpha}{\sqrt{\epsilon}}}$ where $\alpha$ equals the fine structure constant. In the derivation of \cref{g constant} we have redefined $\vec{q} = (2\pi q_x / L_x, 2\pi q_y / L_y) $, and used that  $c = c_0 / \sqrt{\epsilon}$, $V = N a^2 L_z$, $q_z = 1$,  and $\omega_0 = c\pi / L_z$.
+The constant $\tilde{g}_0 = t\sqrt{\frac{4 \alpha}{\sqrt{\epsilon}}}$ where $\alpha$ equals the fine structure constant. In the derivation of \cref{g constant} we have redefined $\textbf{q} = (2\pi q_x / L_x, 2\pi q_y / L_y) $, and used that  $c = c_0 / \sqrt{\epsilon}$, $V = N a^2 L_z$, $q_z = 1$,  and $\omega_0 = c\pi / L_z$.
 
 
 \section{Effective electron theory}
@@ -181,51 +178,50 @@ The constant $\tilde{g}_0 = t\sqrt{\frac{4 \alpha}{\sqrt{\epsilon}}}$ where $\al
 \end{equation}
 
 \begin{align}
-    S[C^{\dagger},C,a^{\dagger},a] &= \int_0^{\beta}\bigg[d\tau \sum_{\vec{k},\sigma}\left( C_{\vec{k},\sigma}^{\dagger} \partial_{\tau} C_{\vec{k},\sigma} + \left(\epsilon_{\vec{k}} - \mu\right) C_{\vec{k},\sigma}^{\dagger} C_{\svec{k},\sigma}\right) \nonumber\\ 
-                                  &+ \sum_{\vec{q},s}\left( a_{\vec{q},s}^{\dagger} \partial_{\tau} a_{\vec{q},s} +q \hbar w_{\vec{q}} a_{\vec{q},s}^{\dagger}a_{\vec{q},s}\right) \label{action} \\
-                                  &+ \sum_{\vec{k},\sigma,\vec{q},s} \frac{g_{\vec{k},s}^{(\vec{q})}}{\sqrt{N}} \left(a_{\vec{q},s} + a_{-\vec{q}, s}^{\dagger}\right) C_{\vec{k},\sigma}^{\dagger} C_{\vec{k} + \vec{q},\sigma}\bigg]\nonumber
+    S[C^{\dagger},C,a^{\dagger},a] &= \int_0^{\beta}\bigg[d\tau \sum_{\textbf{k},\sigma}\left( C_{\textbf{k},\sigma}^{\dagger} \partial_{\tau} C_{\textbf{k},\sigma} + \left(\epsilon_{\textbf{k}} - \mu\right) C_{\textbf{k},\sigma}^{\dagger} C_{\svec{k},\sigma}\right) \nonumber\\ 
+                                  &+ \sum_{\textbf{q},s}\left( a_{\textbf{q},s}^{\dagger} \partial_{\tau} a_{\textbf{q},s} +q \hbar w_{\textbf{q}} a_{\textbf{q},s}^{\dagger}a_{\textbf{q},s}\right) \label{action} \\
+                                  &+ \sum_{\textbf{k},\sigma,\textbf{q},s} \frac{g_{\textbf{k},s}^{(\textbf{q})}}{\sqrt{N}} \left(a_{\textbf{q},s} + a_{-\textbf{q}, s}^{\dagger}\right) C_{\textbf{k} + \textbf{q},\sigma}^{\dagger} C_{\textbf{k},\sigma}\bigg]\nonumber
     %\label{action}
 \end{align}
-Where the $(C_{\vec{k},\sigma}^{\dagger}, C_{\vec{k},\sigma})$ are Grassman numbers and $(a_{\vec{q},s}^{\dagger},a_{\vec{q},s})$ are complex numbers. It is convenient to introduce the Fourier decompositions
+Where the $(C_{\textbf{k},\sigma}^{\dagger}, C_{\textbf{k},\sigma})$ are Grassman numbers and $(a_{\textbf{q},s}^{\dagger},a_{\textbf{q},s})$ are complex numbers. It is convenient to introduce the Fourier decompositions
 \begin{equation}
-C_{\vec{k},\sigma} = \frac{1}{\sqrt{\beta}}\sum_{\omega_n} C_{k,\sigma} e^{-i \omega_n \tau}\;\text{and}\; C_{k,\sigma} = \frac{1}{\sqrt{\beta}} \int_0^{\beta} d\tau C_{\vec{k},\sigma}(\tau) e^{i \omega_n \tau}\;,
+C_{\textbf{k},\sigma} = \frac{1}{\sqrt{\beta}}\sum_{\omega_n} C_{k,\sigma} e^{-i \omega_n \tau}\;\text{and}\; C_{k,\sigma} = \frac{1}{\sqrt{\beta}} \int_0^{\beta} d\tau C_{\textbf{k},\sigma}(\tau) e^{i \omega_n \tau}\;,
 \label{fourier C}
 \end{equation}
-where we have defined the $3$-vector $k = (-\omega_n,\vec{k})$, with $\omega_n = (2n + 1)\pi / \beta, n \in  \mathbb{Z}$. Similarly, for the photon operators
+where we have defined the $3$-vector $k = (-\omega_n,\textbf{k})$, with $\omega_n = (2n + 1)\pi / \beta, n \in  \mathbb{Z}$. Similarly, for the photon operators
 \begin{equation}
-a_{\vec{q},s} = \frac{1}{\sqrt{\beta}}\sum_{\Omega_n} a_{q,s} e^{-i \Omega_n \tau}\;\text{and}\; a_{q,s} = \frac{1}{\sqrt{\beta}} \int_0^{\beta} d\tau a_{\vec{q},s}(\tau) e^{i \Omega_n \tau}\;,
+a_{\textbf{q},s} = \frac{1}{\sqrt{\beta}}\sum_{\Omega_n} a_{q,s} e^{-i \Omega_n \tau}\;\text{and}\; a_{q,s} = \frac{1}{\sqrt{\beta}} \int_0^{\beta} d\tau a_{\textbf{q},s}(\tau) e^{i \Omega_n \tau}\;,
 \label{fourier a}
 \end{equation}
-with $q = (-\Omega_n,\vec{q})$ and $\Omega_n = 2n\pi / \beta, n \in  \mathbb{Z}$. Using the Fourier decompositions~\cref{fourier C} and~\cref{fourier a} in the expression for the action~\cref{action} gives
+with $q = (-\Omega_n,\textbf{q})$ and $\Omega_n = 2n\pi / \beta, n \in  \mathbb{Z}$. Using the Fourier decompositions~\cref{fourier C} and~\cref{fourier a} in the expression for the action~\cref{action} gives
 
 \begin{align}
-    S[C^{\dagger},C,a,a^{\dagger}] &= \sum_{k,\sigma} C^{\dagger}_{k,\sigma}\left(-i\hbar\omega_n - \mu + \epsilon_{\vec{k}}\right) C_{k,\sigma} \nonumber \\
-                                   &+ \sum_{q,s} a^{\dagger}_{q,s} \left(-i\hbar \Omega_n + \hbar \omega_{\vec{q}}\right) a_{q,s} \label{matsubara action} \\
-                                   &+ \sum_{\vec{k},\sigma,\vec{q},s} \sum_{n,n',n''} \frac{g_{\vec{k},s}^{(\vec{q})}}{\sqrt{\beta N}} \left(a^{(n)}_{\vec{q},s} \delta_{n'', -n + n'} + a^{(n)}_{-\vec{q}, s}^{\dagger}  \delta_{n'',n + n'}\right) C^{(n')\dagger}_{\vec{k},\sigma}C^{(n'')}_{\vec{k} + \vec{q},\sigma}\;.\nonumber
+    S[C^{\dagger},C,a,a^{\dagger}] &= \sum_{k,\sigma} C^{\dagger}_{k,\sigma}\left(-i\hbar\omega_n - \mu + \epsilon_{\textbf{k}}\right) C_{k,\sigma} \nonumber \\
+                                   &+ \sum_{q,s} a^{\dagger}_{q,s} \left(-i\hbar \Omega_n + \hbar \omega_{\textbf{q}}\right) a_{q,s} \label{matsubara action} \\
+                                   &+ \sum_{k,\sigma,q,s} \frac{g_{\textbf{k},s}^{(\textbf{q})}}{\sqrt{\beta N}} \left(a_{q,s} + a_{-q, s}^{\dagger}\right) C^{\dagger}_{k + q,\sigma}C_{k,\sigma}\;.\nonumber
 \end{align}
-\todo{holder på å skrive om til 3-vektor notasjon, og får det ikke til å gå opp i siste linje}
-To get the effective field theory of the electrons in the metal, one must integrate over the photon degrees of freedom $a_{q,s}$ and $a_{q,s}^{\dagger}$. To make the integration possible, the $a$-dependent part of~\cref{matsubara action} has to be rewritten as a sum of bilinear terms. Using $\sum_n a^{(n)}_{\vec{q},s} \delta_{n'', -n + n'} = \sum_n a^{(-n)}_{\vec{q},s} \delta_{n'', n + n'}$ gives
+To get the effective field theory of the electrons in the metal, one must integrate over the photon degrees of freedom $a_{q,s}$ and $a_{q,s}^{\dagger}$. To make the integration possible, the $a$-dependent part of~\cref{matsubara action} has to be rewritten as a sum of bilinear terms
 \begin{align}
-     &\sum_{\vec{q},s,n} a^{(n)\dagger}_{\vec{q},s} \left(-i\hbar\Omega_n + \hbar \omega_{\vec{q}}\right) a^{(n)}_{\vec{q},s} + \sum_{\vec{k},\sigma,\vec{q},s} \sum_{n,n',n''} \frac{g_{\vec{k},s}^{(\vec{q})}}{\sqrt{\beta N}} \delta_{n'',n + n'} \left(a^{(-n)}_{\vec{q},s} + a^{(n)}_{-\vec{q}, s}^{\dagger}\right) C^{(n')\dagger}_{\vec{k},\sigma}C^{(n'')}_{\vec{k} + \vec{q},\sigma}\nonumber \\
+     &\sum_{q,s} a^{\dagger}_{q,s} \left(-i\hbar\Omega_n + \hbar \omega_{\textbf{q}}\right) a_{q,s} + \sum_{k,\sigma,q,s} \frac{g_{\textbf{k},s}^{(\textbf{q})}}{\sqrt{\beta N}} \left(a_{q,s} + a_{-q, s}^{\dagger}\right) C^{\dagger}_{k + q,\sigma}C_{k,\sigma}\nonumber \\
      %
-     &= \sum_{\vec{q},s,n} \left(-i\hbar\Omega_n + \hbar \omega_{\vec{q}}\right)  \left(a^{(n)\dagger}_{\vec{q},s} + \frac{\sum_{\vec{k'},\sigma', m'} \frac{g_{\vec{k'},s}^{(\vec{q})}}{\sqrt{\beta N}} C^{(m')\dagger}_{\vec{k'},\sigma'}C^{(-n + m')}_{\vec{k'} + \vec{q},\sigma'} }{\left(-i\hbar\Omega_n + \hbar \omega_{\vec{q}}\right)} \right) \label{rewriting action}\\
+     &= \sum_{q,s} \left(-i\hbar\Omega_n + \hbar \omega_{\textbf{q}}\right)  \left(a^{\dagger}_{q,s} + \frac{\sum_{k',\sigma'} \frac{g_{\textbf{k'},s}^{(\textbf{q})}}{\sqrt{\beta N}} C^{\dagger}_{k' + q,\sigma'}C_{k',\sigma'} }{\left(-i\hbar\Omega_n + \hbar \omega_{\textbf{q}}\right)} \right) \label{rewriting action}\\
      %
-     & \left(a^{(n)}_{\vec{q},s} + \frac{\sum_{\vec{k},\sigma, n'} \frac{g_{\vec{k},s}^{(-\vec{q})}}{\sqrt{\beta N}} C^{(n')\dagger}_{\vec{k},\sigma}C^{(n + n')}_{\vec{k} - \vec{q},\sigma} }{\left(-i\Omega_{n} + \hbar \omega_{\vec{q}}\right)}\right)
+     & \left(a_{q,s} + \frac{\sum_{k,\sigma} \frac{g_{\textbf{k},s}^{(-\textbf{q})}}{\sqrt{\beta N}} C^{\dagger}_{k - q,\sigma}C_{k,\sigma} }{\left(-i\Omega_{n} + \hbar \omega_{\textbf{q}}\right)}\right)
      %
-     -\sum_{\vec{q},s,\vec{k},\vec{k'},\sigma,\sigma', n, n', m'} \frac{g_{\vec{k'},s}^{(\vec{q})} g_{\vec{k},s}^{(-\vec{q})}  }{\beta N\left(-i\hbar\Omega_n + \hbar \omega_{\vec{q}}\right)}
-      C^{(m')\dagger}_{\vec{k'},\sigma'}C^{(-n + m')}_{\vec{k'} + \vec{q},\sigma'} C^{(n')\dagger}_{\vec{k},\sigma}C^{(n + n')}_{\vec{k} - \vec{q},\sigma}\nonumber \\
+     -\sum_{q,s,k,k',\sigma,\sigma'} \frac{g_{\textbf{k'},s}^{(\textbf{q})} g_{\textbf{k},s}^{(-\textbf{q})}  }{\beta N\left(-i\hbar\Omega_n + \hbar \omega_{\textbf{q}}\right)}
+      C^{\dagger}_{k' + q,\sigma'}C_{k',\sigma'} C^{\dagger}_{k - q,\sigma}C_{k,\sigma}\nonumber \\
      %
-     &:= \sum_{\vec{q},s,n} \left(-i\hbar\Omega_n + \hbar \omega_{\vec{q}}\right)  \bar{a}^{(n)\dagger}_{\vec{q},s}\bar{a}^{(n)}_{\vec{q},s} + S^{e-e}_{eff}\;.\nonumber \\
+     &:= \sum_{\textbf{q},s,n} \left(-i\hbar\Omega_n + \hbar \omega_{\textbf{q}}\right)  \bar{a}^{\dagger}_{q,s}\bar{a}_{q,s} + S^{e-e}_{eff}\;.\nonumber \\
 \end{align}
-In the last line we defined the shifted coordinates  $\bar{a}^{(n)\dagger}_{\vec{q},s}$ and $\bar{a}^{(n)}_{\vec{q},s}$, and introduced the effective action
+In the last line we defined the shifted coordinates  $\bar{a}^{\dagger}_{q,s}$ and $\bar{a}_{q,s}$, and introduced the effective action
 \begin{equation}
-    S^{e-e}_{eff} = -\sum_{\vec{q},s,\vec{k},\vec{k'},\sigma,\sigma', n, n', m'} \frac{g_{\vec{k'},s}^{(\vec{q})} g_{\vec{k},s}^{(-\vec{q})}  }{N\left(-i\hbar\Omega_n + \hbar \omega_{\vec{q}}\right)}
-      C^{(m')\dagger}_{\vec{k'},\sigma'}C^{(-n + m')}_{\vec{k'} + \vec{q},\sigma'} C^{(n')\dagger}_{\vec{k},\sigma}C^{(n + n')}_{\vec{k} - \vec{q},\sigma}\;. 
+    S^{e-e}_{eff} = -\sum_{q,s,k,k',\sigma,\sigma'} \frac{g_{\textbf{k'},s}^{(\textbf{q})} g_{\textbf{k},s}^{(-\textbf{q})}  }{\beta N\left(-i\hbar\Omega_n + \hbar \omega_{\textbf{q}}\right)}
+      C^{\dagger}_{k' + q,\sigma'}C_{k',\sigma'} C^{\dagger}_{k - q,\sigma}C_{k,\sigma}\;.\nonumber \\
     \label{effective hamiltonian}
 \end{equation}
 Using~\cref{rewriting action}, the expression for the action~\cref{matsubara action} becomes
 \begin{equation}
-     S[C^{\dagger},C,\bar{a},\bar{a}^{\dagger}] = \sum_{\vec{q},s,n} \left(-i\hbar\Omega_n + \hbar \omega_{\vec{q}}\right)  \bar{a}^{(n)\dagger}_{\vec{q},s}\bar{a}^{(n)}_{\vec{q},s} + \sum_{\vec{k},\sigma, n} \left(-i\hbar\omega_n - \mu + \epsilon_{\vec{k}}\right) C^{(n)\dagger}_{\vec{k},\sigma} C^{(n)}_{\vec{k},\sigma} +  S^{e-e}_{eff} \;.
+     S[C^{\dagger},C,\bar{a},\bar{a}^{\dagger}] = \sum_{q,s} \left(-i\hbar\Omega_n + \hbar \omega_{q}\right)  \bar{a}^{\dagger}_{q,s}\bar{a}_{q,s} + \sum_{k,\sigma} \left(-i\hbar\omega_n - \mu + \epsilon_{\textbf{k}}\right) C^{\dagger}_{k,\sigma} C_{k,\sigma} +  S^{e-e}_{eff} \;.
      \label{action shifted coordinates}
 \end{equation}
 Since the change of variables to $\bar{a}$ and $\bar{a}^{\dagger}$ amounted to a $a$-independent shift of $a$ and $a^{\dagger}$, the functional integration measure in \cref{path integral} remains unchanged $D(a,a^{\dagger}) = D(\bar{a},\bar{a}^{\dagger})$. 
@@ -234,16 +230,63 @@ The $\bar{a}$-dependent part of the integral can now be computed using the Gauss
     \int D(v^{\dagger},v) e^{\sum_{i,j,n} A_{i,j}^{n} v_i^{\dagger} v_j^{\dagger}} = \frac{1}{\sqrt{\det{A}}} \;.
     \label{gaussian integral}
 \end{equation}
-The result of the ${a}$-integration is a multiplicative constant in the partition function. Since expectation values consist of taking derivatives of the partition function, this constant can be neglected. Finally, the effective partion function for the electrons becomes
+The result of the ${a}$-integration is a multiplicative constant in the partition function. Since expectation values consist of taking derivatives of the logarithm of the partition function, this constant can be neglected. Finally, the effective partion function for the electrons becomes
 \begin{equation}
     \mathcal{Z}_{eff} = \int D(C^{\dagger}, C) e^{-S_{eff}[C^{\dagger},C] / \hbar}\;,
     \label{effective partion function}
 \end{equation} 
 with the effetive action
 \begin{equation}
-    S_{eff}[C^{\dagger},C] = \sum_{\vec{k},\sigma, n} \left(-i\hbar\omega_n - \mu + \epsilon_{\vec{k}}\right) C^{(n)\dagger}_{\vec{k},\sigma} C^{(n)}_{\vec{k},\sigma} +  S^{e-e}_{eff} \;.
+    S_{eff}[C^{\dagger},C] = \sum_{k,\sigma} \left(-i\hbar\omega_n - \mu + \epsilon_{\textbf{k}}\right) C^{\dagger}_{k,\sigma} C_{k,\sigma} +  S^{e-e}_{eff} \;.
     \label{effective action}
 \end{equation}
+\section{Mean field theory}
+The action in equation~\cref{effective action} involves four fermion fields, and can therefore not be computed exactly. We therefore proceed by constructing a mean field theory using the Hubbard-Stratonovich transformation in the cooper channel~\cite{Altland}. Starting with a path integral with a general four field action 
+\begin{equation}
+    Z = \int D(C^{\dagger}, C) e^{-\frac{1}{2\beta V^3}C^{\dagger}_{\alpha} C^{\dagger}_{\alpha'} V_{\alpha \alpha' \beta \beta'} C_{\beta} C_{\beta'}} \;,
+    \label{general four field path integral}
+\end{equation}
+where we use the Einstein summation convention, and each $\alpha_i$ is a set of quantum numbers. Introdusing the new bosonic fields $\bar{\Delta}$ and $\Delta$, and Using the identity
+\begin{equation}
+    1 = \int D(\bar{\Delta},\Delta) e^{\beta V \bar{\Delta}_{\alpha \alpha'} V^{-1}_{\alpha \alpha' \beta \beta'} \Delta_{\beta \beta'} }\;,
+\end{equation}
+and rescaling the fields
+\begin{align}
+    \bar{\Delta}_{\alpha \alpha'} &\rightarrow \bar{\Delta}_{\alpha \alpha'} + \frac{1}{2 \left(\beta V\right)^2}  C^{\dagger}_{\gamma} C^{\dagger}_{\gamma'} V_{\gamma,\gamma' \alpha \alpha'}\nonumber\\
+         \Delta_{\beta \beta'}    &\rightarrow \Delta_{\beta \beta'} + \frac{1}{2 \left(\beta V\right)^2} V_{\beta \beta' \gamma \gamma'} C_{\gamma} C_{\gamma'}\label{rescaling hs-fields}
+\end{align}
+allows us to rewrite the action in~\cref{general four field path integral} 
+\begin{align}
+     S &= -\frac{1}{2\beta V^3}C^{\dagger}_{\alpha} C^{\dagger}_{\alpha'} V^{-1}_{\alpha \alpha' \beta \beta'} C_{\beta} C_{\beta'} \nonumber\\
+       %
+       &\rightarrow \beta V \left(\bar{\Delta}_{\alpha \alpha'} + \frac{1}{2 \left(\beta V\right)^2} C^{\dagger}_{\gamma} C^{\dagger}_{\gamma'} V_{\gamma,\gamma' \alpha \alpha'}\right) V^{-1}_{\alpha \alpha' \beta \beta'} 
+       %
+       \left(\Delta_{\beta \beta'} + \frac{1}{2 \left(\beta V\right)^2} V_{\beta \beta' \gamma \gamma'} C_{\gamma} C_{\gamma'}\right) \nonumber \\
+       %
+       &- \frac{1}{2\left(\beta V\right)^3}C^{\dagger}_{\alpha} C^{\dagger}_{\alpha'} V_{\alpha \alpha' \beta \beta'} C_{\beta} C_{\beta'} \label{hs-transformation}\\
+       %
+       &= \beta V \bar{\Delta}_{\alpha \alpha'} V^{-1}_{\alpha \alpha' \beta \beta'} \Delta_{\beta \beta'} + \frac{1}{2\beta V}\left( C^{\dagger}_{\gamma} C^{\dagger}_{\gamma'} V_{\gamma,\gamma' \alpha \alpha'}  V^{-1}_{\alpha \alpha' \beta \beta'} \Delta_{\beta \beta'}+ \bar{\Delta}_{\alpha \alpha'} V^{-1}_{\alpha \alpha' \beta \beta'} V_{\beta \beta' \gamma \gamma'} C_{\gamma} C_{\gamma'}\right) \nonumber \\
+       %
+       &+ \frac{1}{4 \left(\beta V\right)^3} C^{\dagger}_{\gamma} C^{\dagger}_{\gamma'} V_{\gamma,\gamma' \alpha \alpha'}  V^{-1}_{\alpha \alpha' \beta \beta'} V_{\beta \beta' \gamma \gamma'} C_{\gamma} C_{\gamma'}  - \frac{1}{2\left(\beta V\right)^3}C^{\dagger}_{\alpha} C^{\dagger}_{\alpha'} V_{\alpha \alpha' \beta \beta'} C_{\beta} C_{\beta'} \nonumber\\
+       %
+       &= \beta V \bar{\Delta}_{\alpha \alpha'} V^{-1}_{\alpha \alpha' \beta \beta'} \Delta_{\beta \beta'} + \frac{1}{\beta V}\left( C^{\dagger}_{\gamma} C^{\dagger}_{\gamma'} \Delta_{\gamma \gamma'}+ \bar{\Delta}_{\gamma \gamma'}  C_{\gamma} C_{\gamma'}\right) \nonumber \;.\\
+\end{align}
+\todo{legg til del om V V invers identiteter}
+\textbf{spm: $V V^{-1} V = 2, V^{-1} V = V V^{-1} = -2$?}
+Using the Hubbard-Strentonovich transformation~\cref{hs-transformation} we can rewrite the partition function in~\cref{effective action}
+\begin{align}
+S_{eff}[C^{\dagger},C] = \sum_{k,\sigma} \left(-i\hbar\omega_n - \mu + \epsilon_{\textbf{k}}\right) C^{\dagger}_{k,\sigma} C_{k,\sigma} +  -\sum_{q,s,k,k',\sigma,\sigma'} \frac{g_{\textbf{k'},s}^{(\textbf{q})} g_{\textbf{k},s}^{(-\textbf{q})}  }{\beta N\left(-i\hbar\Omega_n + \hbar \omega_{\textbf{q}}\right)}
+\end{align}
+    
+%\textbf{Spørsmål til Møtet 13 sep:
+%\\
+%Hvor detaljert burde jeg skrive om path integral, matsubara, grassman tall etc 
+%\\
+%Gå igjennom små spm i kap 3. Henger sammen med spm over
+%\\
+%\\
+%s331 bytte kordinater inne i determinant
+%}
 
 
 \printbibliography
