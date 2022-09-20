@@ -4,6 +4,7 @@
 \usepackage{biblatex}
 \usepackage{cleveref}
 \usepackage{todonotes}
+\usepackage{physics}
 \addbibresource{prosjektoppgave.bib}
 
 \title{Prosjektoppgave}
@@ -18,17 +19,23 @@
 
 
 %Spørsmål jeg har til senere:
-%Hva er lattice cites i normalmetallet? Er det sånn tight binding greie?
-    %svar: er tught binding med antagelse om nesten fri. Henning mener at å anta tight binding og lattice sites kanskje er unødig.
-%Hvordan kan jeg se at E og B felt blir maksimalt på ulike steder
 %hva er greia med conservation of momentum?
 %hva er greia med anticrossings?
 %Hva betyr "resolve broken inversion symmetry in SC?
+%Hvordan kan man se på directional dependence of superconducting gap?
+
+
+
+
+%besvarte spm
 %Er vår hamiltonian på form 4.26 s167 i atlas and simon? (har det noe å si at vi har 2 forskjellige typer partikler?
     %svar: tror det er trivielt å legge til to ekstra kordinater. Men har ikke gjort det eksplisitt
 %Hva er relasjon mellom det vi gjør og mean field theory i Simon kapittel 6.1?
     %svar: jeg blandet effective og mean field theory. I kap 3 skal jeg gjøre effective field theory som i 6.1
-
+%Hva er lattice cites i normalmetallet? Er det sånn tight binding greie?
+    %svar: er tught binding med antagelse om nesten fri. Henning mener at å anta tight binding og lattice sites kanskje er unødig.
+%Hvordan kan jeg se at E og B felt blir maksimalt på ulike steder
+    %svar: dette er trivielt på grunn av cos og sin i vektor potensiale?
 
 \begin{document}
 
@@ -211,13 +218,17 @@ To get the effective field theory of the electrons in the metal, one must integr
      -\sum_{q,s,k,k',\sigma,\sigma'} \frac{g_{\textbf{k'},s}^{(\textbf{q})} g_{\textbf{k},s}^{(-\textbf{q})}  }{\beta N\left(-i\hbar\Omega_n + \hbar \omega_{\textbf{q}}\right)}
       C^{\dagger}_{k' + q,\sigma'}C_{k',\sigma'} C^{\dagger}_{k - q,\sigma}C_{k,\sigma}\nonumber \\
      %
-     &:= \sum_{\textbf{q},s,n} \left(-i\hbar\Omega_n + \hbar \omega_{\textbf{q}}\right)  \bar{a}^{\dagger}_{q,s}\bar{a}_{q,s} + S^{e-e}_{eff}\;.\nonumber \\
+     &:= \sum_{\textbf{q},s,n} \left(-i\hbar\Omega_n + \hbar \omega_{\textbf{q}}\right)  \bar{a}^{\dagger}_{q,s}\bar{a}_{q,s} + S^{e-e}_{eff}\;.\nonumber
 \end{align}
 In the last line we defined the shifted coordinates  $\bar{a}^{\dagger}_{q,s}$ and $\bar{a}_{q,s}$, and introduced the effective action
 \begin{equation}
-    S^{e-e}_{eff} = -\sum_{q,s,k,k',\sigma,\sigma'} \frac{g_{\textbf{k'},s}^{(\textbf{q})} g_{\textbf{k},s}^{(-\textbf{q})}  }{\beta N\left(-i\hbar\Omega_n + \hbar \omega_{\textbf{q}}\right)}
-      C^{\dagger}_{k' + q,\sigma'}C_{k',\sigma'} C^{\dagger}_{k - q,\sigma}C_{k,\sigma}\;.\nonumber \\
+    S^{e-e}_{eff} = -\sum_{q,s,k,k',\sigma,\sigma'} \frac{1}{2 \beta} V_{k k' q s}
+      C^{\dagger}_{k' + q,\sigma'}C_{k',\sigma'} C^{\dagger}_{k - q,\sigma}C_{k,\sigma}\;,\nonumber \\
     \label{effective hamiltonian}
+\end{equation}
+with
+\begin{equation}
+V_{k k' q s} = 2  \frac{g_{\textbf{k'},s}^{(\textbf{q})} g_{\textbf{k},s}^{(-\textbf{q})}  }{N\left(-i\hbar\Omega_n + \hbar \omega_{\textbf{q}}\right)}\;.
 \end{equation}
 Using~\cref{rewriting action}, the expression for the action~\cref{matsubara action} becomes
 \begin{equation}
@@ -237,47 +248,107 @@ The result of the ${a}$-integration is a multiplicative constant in the partitio
 \end{equation} 
 with the effetive action
 \begin{equation}
-    S_{eff}[C^{\dagger},C] = \sum_{k,\sigma} \left(-i\hbar\omega_n - \mu + \epsilon_{\textbf{k}}\right) C^{\dagger}_{k,\sigma} C_{k,\sigma} +  S^{e-e}_{eff} \;.
+    S_{eff}[C^{\dagger},C] = \sum_{k,\sigma} \epsilon_k C^{\dagger}_{k,\sigma} C_{k,\sigma} +  S^{e-e}_{eff} \;,
     \label{effective action}
 \end{equation}
-\section{Mean field theory}
-The action in equation~\cref{effective action} involves four fermion fields, and can therefore not be computed exactly. We therefore proceed by constructing a mean field theory using the Hubbard-Stratonovich transformation in the cooper channel~\cite{Altland}. Starting with a path integral with a general four field action 
+where we have defined $\epsilon_k = \left(-i\hbar\omega_n - \mu + \epsilon_{\textbf{k}}\right)$.
+\section{Hubbard-Stratonovich transformation}
+\todo{fikse beta V faktorer, introdusere eksplisitt definisjon av V, rydde opp i indekser og summer }
+The action in equation~\cref{effective action} involves four fermion fields, and can therefore not be computed exactly. We therefore proceed by constructing a mean field theory using the Hubbard-Stratonovich(HS) transformation in the cooper channel~\cite{Altland}. Starting with a path integral with a general four field action 
 \begin{equation}
-    Z = \int D(C^{\dagger}, C) e^{-\frac{1}{2\beta V^3}C^{\dagger}_{\alpha} C^{\dagger}_{\alpha'} V_{\alpha \alpha' \beta \beta'} C_{\beta} C_{\beta'}} \;,
+    Z = \int D(C^{\dagger}, C) e^{-\frac{1}{2\beta}C^{\dagger}_{\alpha} C^{\dagger}_{\alpha'} V_{\alpha \alpha' \beta \beta'} C_{\beta} C_{\beta'}} \;,
     \label{general four field path integral}
 \end{equation}
-where we use the Einstein summation convention, and each $\alpha_i$ is a set of quantum numbers. Introdusing the new bosonic fields $\bar{\Delta}$ and $\Delta$, and Using the identity
+where we use the Einstein summation convention, and each $\alpha_i$ is a set of quantum numbers. In order to perform the HS-transformation we need the inverse of the potential $V_{\alpha_1 \alpha_2 \alpha_3 \alpha_4}$. The fermionic commutation relations of the coherent states, lead to a unconventional inverse relation. In order to see this, we define the representation matrices $V_{\alpha_1 \alpha_2 \alpha_3 \alpha_4}$ and $V^{-1}_{\alpha_1 \alpha_2 \alpha_3 \alpha_4}$ in terms of the abstract operators $\hat{V}$ and $\hat{V}^{-1}$
+\begin{align}
+V_{\alpha_1 \alpha_2 \alpha_3 \alpha_4} &= \bra{\alpha_1 \alpha_2}\hat{V}\ket{\alpha_3 \alpha_4}\nonumber \\
+V^{-1}_{\alpha_1 \alpha_2 \alpha_3 \alpha_4} &= \bra{\alpha_1 \alpha_2}\hat{V}^{-1} \ket{\alpha_3 \alpha_4} \label{V representation} \;.
+\end{align}
+Using this definition 
 \begin{equation}
-    1 = \int D(\bar{\Delta},\Delta) e^{\beta V \bar{\Delta}_{\alpha \alpha'} V^{-1}_{\alpha \alpha' \beta \beta'} \Delta_{\beta \beta'} }\;,
+    V_{\alpha_1 \alpha_2 \beta \beta'} V^{-1}_{\beta' \beta \alpha_3 \alpha_4} = \bra{\alpha_1 \alpha_2}\hat{V}\ket{\beta \beta'}\bra{\beta' \beta}\hat{V}^{-1} \ket{\alpha_3 \alpha_4}  = \delta_{\alpha_1 \alpha_4} \delta_{\alpha_2 \alpha_3} - \delta_{\alpha_1 \alpha_3} \delta_{\alpha_2 \alpha_4} 
+    \label{inverse relation}
+\end{equation}
+Where we have used the identity $\sum_{\beta} \ket{\beta}{\bra{\beta}} = 1$ and the anti-commutation relations between the coherent state creation/anihilation operators $C^{\dagger}_{\alpha}$ and ${C_{\alpha'}}$. Introdusing the new bosonic fields $\bar{\Delta}$ and $\Delta$, using the identity
+\begin{equation} 
+    1 = \int D(\bar{\Delta},\Delta) e^{\beta \bar{\Delta}_{\alpha \alpha'} V^{-1}_{\alpha \alpha' \beta \beta'} \Delta_{\beta \beta'} }\;,
 \end{equation}
 and rescaling the fields
 \begin{align}
-    \bar{\Delta}_{\alpha \alpha'} &\rightarrow \bar{\Delta}_{\alpha \alpha'} + \frac{1}{2 \left(\beta V\right)^2}  C^{\dagger}_{\gamma} C^{\dagger}_{\gamma'} V_{\gamma,\gamma' \alpha \alpha'}\nonumber\\
-         \Delta_{\beta \beta'}    &\rightarrow \Delta_{\beta \beta'} + \frac{1}{2 \left(\beta V\right)^2} V_{\beta \beta' \gamma \gamma'} C_{\gamma} C_{\gamma'}\label{rescaling hs-fields}
+    \bar{\Delta}_{\alpha \alpha'} &\rightarrow \bar{\Delta}_{\alpha \alpha'} + \frac{1}{2\beta}  C^{\dagger}_{\gamma} C^{\dagger}_{\gamma'} V_{\gamma,\gamma' \alpha' \alpha}\nonumber\\
+         \Delta_{\beta \beta'}    &\rightarrow \Delta_{\beta \beta'} + \frac{1}{2\beta} V_{\beta' \beta \gamma \gamma'} C_{\gamma} C_{\gamma'}\label{rescaling hs-fields}\;,
 \end{align}
 allows us to rewrite the action in~\cref{general four field path integral} 
 \begin{align}
-     S &= -\frac{1}{2\beta V^3}C^{\dagger}_{\alpha} C^{\dagger}_{\alpha'} V^{-1}_{\alpha \alpha' \beta \beta'} C_{\beta} C_{\beta'} \nonumber\\
+     - \hbar S &= -\frac{1}{2\beta}C^{\dagger}_{\alpha} C^{\dagger}_{\alpha'} V^{-1}_{\alpha \alpha' \beta \beta'} C_{\beta} C_{\beta'} \nonumber\\
        %
-       &\rightarrow \beta V \left(\bar{\Delta}_{\alpha \alpha'} + \frac{1}{2 \left(\beta V\right)^2} C^{\dagger}_{\gamma} C^{\dagger}_{\gamma'} V_{\gamma,\gamma' \alpha \alpha'}\right) V^{-1}_{\alpha \alpha' \beta \beta'} 
+       &\rightarrow \beta \left(\bar{\Delta}_{\alpha \alpha'} + \frac{1}{2 \beta} C^{\dagger}_{\gamma} C^{\dagger}_{\gamma'} V_{\gamma,\gamma' \alpha' \alpha}\right) V^{-1}_{\alpha \alpha' \beta \beta'} 
        %
-       \left(\Delta_{\beta \beta'} + \frac{1}{2 \left(\beta V\right)^2} V_{\beta \beta' \gamma \gamma'} C_{\gamma} C_{\gamma'}\right) \nonumber \\
+       \left(\Delta_{\beta \beta'} + \frac{1}{2 \beta} V_{\beta' \beta \gamma \gamma'} C_{\gamma} C_{\gamma'}\right) \nonumber \\
        %
-       &- \frac{1}{2\left(\beta V\right)^3}C^{\dagger}_{\alpha} C^{\dagger}_{\alpha'} V_{\alpha \alpha' \beta \beta'} C_{\beta} C_{\beta'} \label{hs-transformation}\\
+       &- \frac{1}{2\beta}C^{\dagger}_{\alpha} C^{\dagger}_{\alpha'} V_{\alpha \alpha' \beta \beta'} C_{\beta} C_{\beta'} \label{hs-transformation}\\
        %
-       &= \beta V \bar{\Delta}_{\alpha \alpha'} V^{-1}_{\alpha \alpha' \beta \beta'} \Delta_{\beta \beta'} + \frac{1}{2\beta V}\left( C^{\dagger}_{\gamma} C^{\dagger}_{\gamma'} V_{\gamma,\gamma' \alpha \alpha'}  V^{-1}_{\alpha \alpha' \beta \beta'} \Delta_{\beta \beta'}+ \bar{\Delta}_{\alpha \alpha'} V^{-1}_{\alpha \alpha' \beta \beta'} V_{\beta \beta' \gamma \gamma'} C_{\gamma} C_{\gamma'}\right) \nonumber \\
+       &= \beta \bar{\Delta}_{\alpha \alpha'} V^{-1}_{\alpha \alpha' \beta \beta'} \Delta_{\beta \beta'} + \frac{1}{2}\left( C^{\dagger}_{\gamma} C^{\dagger}_{\gamma'} V_{\gamma,\gamma' \alpha' \alpha}  V^{-1}_{\alpha \alpha' \beta \beta'} \Delta_{\beta \beta'}+ \bar{\Delta}_{\alpha \alpha'} V^{-1}_{\alpha \alpha' \beta \beta'} V_{\beta' \beta \gamma \gamma'} C_{\gamma} C_{\gamma'}\right) \nonumber \\
        %
-       &+ \frac{1}{4 \left(\beta V\right)^3} C^{\dagger}_{\gamma} C^{\dagger}_{\gamma'} V_{\gamma,\gamma' \alpha \alpha'}  V^{-1}_{\alpha \alpha' \beta \beta'} V_{\beta \beta' \gamma \gamma'} C_{\gamma} C_{\gamma'}  - \frac{1}{2\left(\beta V\right)^3}C^{\dagger}_{\alpha} C^{\dagger}_{\alpha'} V_{\alpha \alpha' \beta \beta'} C_{\beta} C_{\beta'} \nonumber\\
+       &+ \frac{1}{4\beta} C^{\dagger}_{\gamma} C^{\dagger}_{\gamma'} V_{\gamma,\gamma' \alpha' \alpha}  V^{-1}_{\alpha \alpha' \beta \beta'} V_{\beta' \beta \gamma \gamma'} C_{\gamma} C_{\gamma'}  - \frac{1}{2\beta}C^{\dagger}_{\alpha} C^{\dagger}_{\alpha'} V_{\alpha \alpha' \beta \beta'} C_{\beta} C_{\beta'} \nonumber\\
        %
-       &= \beta V \bar{\Delta}_{\alpha \alpha'} V^{-1}_{\alpha \alpha' \beta \beta'} \Delta_{\beta \beta'} + \frac{1}{\beta V}\left( C^{\dagger}_{\gamma} C^{\dagger}_{\gamma'} \Delta_{\gamma \gamma'}+ \bar{\Delta}_{\gamma \gamma'}  C_{\gamma} C_{\gamma'}\right) \nonumber \;.\\
+       &= \beta\bar{\Delta}_{\alpha \alpha'} V^{-1}_{\alpha \alpha' \beta \beta'} \Delta_{\beta \beta'} - \left( C^{\dagger}_{\gamma} C^{\dagger}_{\gamma'} \Delta_{\gamma \gamma'}+ \bar{\Delta}_{\gamma \gamma'}  C_{\gamma} C_{\gamma'}\right) \nonumber \;.
 \end{align}
-\todo{legg til del om V V invers identiteter}
-\textbf{spm: $V V^{-1} V = 2, V^{-1} V = V V^{-1} = -2$?}
-Using the Hubbard-Strentonovich transformation~\cref{hs-transformation} we can rewrite the partition function in~\cref{effective action}
+Where we have used~\cref{inverse relation} to resolve the $V V^{-1}$ and $V^{-1} V V^{-1}$ terms. 
+
+Using the HS-transformation~\cref{hs-transformation}, and introducing the new coordinates $Q = (k + k') / 2 $, $p = p' + q$ and $p' = (k - k')/2$ we can rewrite the effective action in~\cref{effective action}
 \begin{align}
-S_{eff}[C^{\dagger},C] = \sum_{k,\sigma} \left(-i\hbar\omega_n - \mu + \epsilon_{\textbf{k}}\right) C^{\dagger}_{k,\sigma} C_{k,\sigma} +  -\sum_{q,s,k,k',\sigma,\sigma'} \frac{g_{\textbf{k'},s}^{(\textbf{q})} g_{\textbf{k},s}^{(-\textbf{q})}  }{\beta N\left(-i\hbar\Omega_n + \hbar \omega_{\textbf{q}}\right)}
+ - \hbar S_{eff}[C^{\dagger},C] &= \sum_{k,\sigma} \epsilon_k C^{\dagger}_{k,\sigma} C_{k,\sigma} - \frac{1}{2\beta} \sum_{Q,s,p,p',\sigma,\sigma'} C^{\dagger}_{Q + p,\sigma'} C^{\dagger}_{Q - p,\sigma} V_{Q s p p'}  C_{Q + p',\sigma'} C_{Q - p',\sigma}\label{effective action transformed}\\
+                       %
+                       &=  \sum_{k,\sigma} \epsilon_k C^{\dagger}_{k,\sigma} C_{k,\sigma} +  \sum_{Q,s,p,p',\sigma,\sigma'} \beta \bar{\Delta}^{Q}_{\sigma' \sigma}(p) V^{-1}_{Q s p p'} \Delta^{Q}_{\sigma' \sigma}(p')\nonumber\\
+                       %
+                       &- \sum_{Q}\left( C^{\dagger}_{Q + p,\sigma'} C^{\dagger}_{Q - p,\sigma} \Delta^{Q}_{\sigma' \sigma}(p)+ \bar{\Delta}^{Q}_{\sigma' \sigma}(p)  C_{Q + p,\sigma'} C_{Q - p,\sigma}\right)\nonumber\\
+                       %
+                       &:= \sum_{Q,s,p,p',\sigma,\sigma'} \beta \bar{\Delta}^{Q}_{\sigma' \sigma}(p) V^{-1}_{Q s p p'} \Delta^{Q}_{\sigma' \sigma}(p') + \frac{1}{2} \sum_{Q p} \bar{\Psi}_{Q p} G^{-1}_ {Q p} \Psi_{Q p}\;,
 \end{align}
-    
+with 
+\begin{equation}
+     G_{Q p}^{-1} = 
+\begin{bmatrix}
+\epsilon_{Q + p} & 0                & \Delta^{Q}_{\uparrow \uparrow}(p) & \Delta^{Q}_{\uparrow \downarrow}(p) \\
+         0       & \epsilon_{Q + p} & \Delta^{Q}_{\downarrow \uparrow}(p) & \Delta^{Q}_{\downarrow \downarrow}(p) \\
+         \bar{\Delta}^{Q}_{\uparrow \uparrow}(p)       & \bar{\Delta}^{Q}_{\uparrow \downarrow}(p)                & -\epsilon_{Q-p} & 0 \\
+         \bar{\Delta}^{Q}_{\downarrow \uparrow}(p)       & \bar{\Delta}^{Q}_{\downarrow \downarrow}(p)                & 0               & -\epsilon_{Q-p} \\
+\end{bmatrix}\;,
+\end{equation}
+and
+\begin{equation}
+   \Psi_{Q p} = 
+\begin{bmatrix}
+     C_{Q + p,\uparrow} \\
+     C_{Q + p,\downarrow}  \\
+     C^{\dagger}_{Q - p,\uparrow}  \\
+     C^{\dagger}_{Q - p,\downarrow}
+\end{bmatrix}\;.
+\end{equation} 
+At this point it is necessary to make the approximation that $Q$ has a fixed value, so that we can remove the sum over $Q$ in~\cref{effective action transformed}. The value of $Q$ is chosen so that it gives the highest possible critical temperature~($T_c$), making it responsible for the phase transition. After making the choice of $Q$, all the $\Psi_{Q p}$-vectors are independent, and we can perform the Gaussian integrals 
+\begin{align}
+    \int D(C^{\dagger},C) e^{\frac{1}{2} \sum_{p} \bar{\Psi}_{p} G^{-1}_ {p} \Psi_{p}} &= \Pi_p \det{G^{-1}(p)} \nonumber\\
+                                                                                               &= e^{\sum_p \Tr{\ln{G^{-1}(p)}}} \;\nonumber,
+\end{align}
+where we have used the identity $\ln{\det{A}} = \Tr{\ln{A}}$. The path integral~\cref{effective partion function} then becomes
+\begin{equation}
+    Z_{eff} = \int D(\bar{\Delta}, \Delta) e^{\left(\beta\sum_{s,p,p',\sigma,\sigma'} \bar{\Delta}_{\sigma' \sigma}(p) V^{-1}_{s p p'} \Delta_{\sigma' \sigma}(p') + \sum_p \Tr{\ln{G^{-1}(p)}}\right) / \hbar}\;.
+\end{equation}
+The fermionic fields $C^{\dagger}$ and $C$ have now been replaced with the bosonic fields $\Delta$ and $\bar{\Delta}$.
+\section{Mean Field Theory}
+To determine the mean field configuration of $\Delta$, we solve the stationary phase equation
+\todo{tror sluttresultat er rett, men tydeligjør fremgang}
+\begin{align}
+    \frac{\delta S_{eff}}{\delta \Delta_{\sigma_1,\sigma_2}^{p}} &= 0 \\
+    \beta\sum_{s,p'} \bar{\Delta}_{\sigma_1 \sigma_2}(p') V^{-1}_{s p' p} + \sum_{p'} \Tr{G(p') 
+    \begin{bmatrix}
+    0 & 0 & \delta_{\sigma_1 \sigma_2, \uparrow \uparrow} & \delta_{\sigma_1 \sigma_2, \uparrow \downarrow} \\
+    0 & 0 & \delta_{\sigma_1 \sigma_2, \downarrow \uparrow} & \delta_{\sigma_1 \sigma_2, \downarrow \downarrow} \\ 
+    0 & 0 & 0 & 0 \\ 
+    0 & 0 & 0 & 0
+    \end{bmatrix} \delta_{p, p'}} &= 0
+\end{align}
 %\textbf{Spørsmål til Møtet 13 sep:
 %\\
 %Hvor detaljert burde jeg skrive om path integral, matsubara, grassman tall etc 
@@ -287,8 +358,16 @@ S_{eff}[C^{\dagger},C] = \sum_{k,\sigma} \left(-i\hbar\omega_n - \mu + \epsilon_
 %\\
 %s331 bytte kordinater inne i determinant
 %}
+$\Tr{G(p) B(\sigma_1 = \uparrow \uparrow)} = $
+\begin{equation}
+\frac{\Delta_{dd} \bar{\Delta}_{dd} \bar{\Delta}_{uu} - \Delta_{dd} \bar{\Delta}_{du} \bar{\Delta}_{ud} + \bar{\Delta}_{uu} \epsilon_{Q-p}^{2}}{\Delta_{dd} \Delta_{uu} \bar{\Delta}_{dd} \bar{\Delta}_{uu} - \Delta_{dd} \Delta_{uu} \bar{\Delta}_{du} \bar{\Delta}_{ud} + \Delta_{dd} \bar{\Delta}_{dd} \epsilon_{Q+p} \epsilon_{Q-p} - \Delta_{du} \Delta_{ud} \bar{\Delta}_{dd} \bar{\Delta}_{uu} + \Delta_{du} \Delta_{ud} \bar{\Delta}_{du} \bar{\Delta}_{ud} + \Delta_{du} \bar{\Delta}_{ud} \epsilon_{Q+p} \epsilon_{Q-p} + \Delta_{ud} \bar{\Delta}_{du} \epsilon_{Q-p}^{2} + \Delta_{uu} \bar{\Delta}_{uu} \epsilon_{Q-p}^{2} + \epsilon_{Q+p} \epsilon_{Q-p}^{3}}
+\end{equation}
+$\Tr{G(p) B(\sigma_1 = \uparrow \downarrow)} = $
+\begin{equation}
+\frac{- \Delta_{du} \bar{\Delta}_{dd} \bar{\Delta}_{uu} + \Delta_{du} \bar{\Delta}_{du} \bar{\Delta}_{ud} + \bar{\Delta}_{du} \epsilon_{Q-p}^{2}}{\Delta_{dd} \Delta_{uu} \bar{\Delta}_{dd} \bar{\Delta}_{uu} - \Delta_{dd} \Delta_{uu} \bar{\Delta}_{du} \bar{\Delta}_{ud} + \Delta_{dd} \bar{\Delta}_{dd} \epsilon_{Q+p} \epsilon_{Q-p} - \Delta_{du} \Delta_{ud} \bar{\Delta}_{dd} \bar{\Delta}_{uu} + \Delta_{du} \Delta_{ud} \bar{\Delta}_{du} \bar{\Delta}_{ud} + \Delta_{du} \bar{\Delta}_{ud} \epsilon_{Q+p} \epsilon_{Q-p} + \Delta_{ud} \bar{\Delta}_{du} \epsilon_{Q-p}^{2} + \Delta_{uu} \bar{\Delta}_{uu} \epsilon_{Q-p}^{2} + \epsilon_{Q+p} \epsilon_{Q-p}^{3}}
+\end{equation}
 
-
+\textbf{Burde man ikke kunne bruke at interaksjon egt er uavhengi av spin?}
 \printbibliography
 
 \end{document}
