@@ -178,19 +178,31 @@ The constant $\tilde{g}_0 = t\sqrt{\frac{4 \alpha}{\sqrt{\epsilon}}}$ where $\al
 
 \section{Effective electron theory}
 \todo{Må utfylle om matsubara formalisme. diskutere sym/anti-sym grensebetingelse}
-\todo{refer To atlas simon}
+In thermal equilibrium, much of the information about a physical system is given by the partition function 
 \begin{equation}
-    \mathcal{Z} = \int D(C^{\dagger}, C) \int D(a^{\dagger}, a) e^{-S[C^{\dagger},C,a^{\dagger},a] / \hbar}
+    \mathcal{Z} = \Tr{e^{-\left(\hat{H} - \mu \hat{N}\right)}} = \sum_n \bra{n} e^{-\left(\hat{H} - \mu \hat{N}\right)} \ket{n} \;.
+    \label{partion function}
+\end{equation}
+Where $\hat{H}$ is the hamiltonian of the system, $\hat{N}$ is the number operator and the sum goes over all possible states of the system. For problems with a large number or infinite degrees of freedom, it is convenient to rewrite the partition function as a path integral~\cite{Altland}
+\begin{equation}
+    Z = \int_{\Psi_0}^{\pm \Psi_0} D(\Psi^{\dagger},\Psi) e^{-S/\hbar}\;,
+    \label{general path integral}
+\end{equation}
+with $S = \int_0^{\beta}d\tau \Psi^{\dagger}\partial_{\Tau}\Psi + H(\Psi^{\dagger},\Psi)$. For bosonic fields, the $\Psi$ and $\Psi^{\dagger}$ variables are complex numbers and the upper integration limit is given by $+\Psi$. For fermionic fields the variables are Grassman numbers, and the upper integration limit is $-\Psi_0$.
+
+In the present problem of a two dimensional metall in a rectangular cavity, the Hamiltonian depends on the bosonic photon fields $a$ and $a^{\dagger}$ and the fermionic electron fields $C$ and $C^{\dagger}$. The partition function is then given by the path integral
+\begin{equation}
+    \mathcal{Z} = \int D(C^{\dagger}, C) \int D(a^{\dagger}, a) e^{-S[C^{\dagger},C,a^{\dagger},a] / \hbar}\;,
     \label{path integral}
 \end{equation}
-
+with the action
 \begin{align}
     S[C^{\dagger},C,a^{\dagger},a] &= \int_0^{\beta}\bigg[d\tau \sum_{\textbf{k},\sigma}\left( C_{\textbf{k},\sigma}^{\dagger} \partial_{\tau} C_{\textbf{k},\sigma} + \left(\epsilon_{\textbf{k}} - \mu\right) C_{\textbf{k},\sigma}^{\dagger} C_{\svec{k},\sigma}\right) \nonumber\\ 
                                   &+ \sum_{\textbf{q},s}\left( a_{\textbf{q},s}^{\dagger} \partial_{\tau} a_{\textbf{q},s} +q \hbar w_{\textbf{q}} a_{\textbf{q},s}^{\dagger}a_{\textbf{q},s}\right) \label{action} \\
-                                  &+ \sum_{\textbf{k},\sigma,\textbf{q},s} \frac{g_{\textbf{k},s}^{(\textbf{q})}}{\sqrt{N}} \left(a_{\textbf{q},s} + a_{-\textbf{q}, s}^{\dagger}\right) C_{\textbf{k} + \textbf{q},\sigma}^{\dagger} C_{\textbf{k},\sigma}\bigg]\nonumber
+                                  &+ \sum_{\textbf{k},\sigma,\textbf{q},s} \frac{g_{\textbf{k},s}^{(\textbf{q})}}{\sqrt{N}} \left(a_{\textbf{q},s} + a_{-\textbf{q}, s}^{\dagger}\right) C_{\textbf{k} + \textbf{q},\sigma}^{\dagger} C_{\textbf{k},\sigma}\bigg]\nonumber \;.
     %\label{action}
 \end{align}
-Where the $(C_{\textbf{k},\sigma}^{\dagger}, C_{\textbf{k},\sigma})$ are Grassman numbers and $(a_{\textbf{q},s}^{\dagger},a_{\textbf{q},s})$ are complex numbers. It is convenient to introduce the Fourier decompositions
+Where the $C_{\textbf{k},\sigma}^{\dagger}$ and $C_{\textbf{k},\sigma}$ are Grassman numbers and $a_{\textbf{q},s}^{\dagger}$ and $a_{\textbf{q},s}$ are complex numbers. It is convenient to introduce the Fourier decompositions
 \begin{equation}
 C_{\textbf{k},\sigma} = \frac{1}{\sqrt{\beta}}\sum_{\omega_n} C_{k,\sigma} e^{-i \omega_n \tau}\;\text{and}\; C_{k,\sigma} = \frac{1}{\sqrt{\beta}} \int_0^{\beta} d\tau C_{\textbf{k},\sigma}(\tau) e^{i \omega_n \tau}\;,
 \label{fourier C}
@@ -222,13 +234,13 @@ To get the effective field theory of the electrons in the metal, one must integr
 \end{align}
 In the last line we defined the shifted coordinates  $\bar{a}^{\dagger}_{q,s}$ and $\bar{a}_{q,s}$, and introduced the effective action
 \begin{equation}
-    S^{e-e}_{eff} = -\sum_{q,s,k,k',\sigma,\sigma'} \frac{1}{2 \beta} V_{k k' q s}
+    S^{e-e}_{eff} = -\sum_{q,k,k',\sigma,\sigma'} \frac{1}{2 \beta} V_{k k' q}
       C^{\dagger}_{k' + q,\sigma'}C_{k',\sigma'} C^{\dagger}_{k - q,\sigma}C_{k,\sigma}\;,\nonumber \\
     \label{effective hamiltonian}
 \end{equation}
 with
 \begin{equation}
-V_{k k' q s} = 2  \frac{g_{\textbf{k'},s}^{(\textbf{q})} g_{\textbf{k},s}^{(-\textbf{q})}  }{N\left(-i\hbar\Omega_n + \hbar \omega_{\textbf{q}}\right)}\;.
+V_{k k' q} = \frac{2}{N} \sum_s \frac{g_{\textbf{k'},s}^{(\textbf{q})} g_{\textbf{k},s}^{(-\textbf{q})}  }{\left(-i\hbar\Omega_n + \hbar \omega_{\textbf{q}}\right)}\;.
 \end{equation}
 Using~\cref{rewriting action}, the expression for the action~\cref{matsubara action} becomes
 \begin{equation}
@@ -238,7 +250,7 @@ Using~\cref{rewriting action}, the expression for the action~\cref{matsubara act
 Since the change of variables to $\bar{a}$ and $\bar{a}^{\dagger}$ amounted to a $a$-independent shift of $a$ and $a^{\dagger}$, the functional integration measure in \cref{path integral} remains unchanged $D(a,a^{\dagger}) = D(\bar{a},\bar{a}^{\dagger})$. 
 The $\bar{a}$-dependent part of the integral can now be computed using the Gaussian integral formula~\cite{Altland}
 \begin{equation}
-    \int D(v^{\dagger},v) e^{\sum_{i,j,n} A_{i,j}^{n} v_i^{\dagger} v_j^{\dagger}} = \frac{1}{\sqrt{\det{A}}} \;.
+    \int D(v^{\dagger},v) e^{\sum_{i,j,n} v_i^{\dagger} A_{i,j}^{n} v_j} = \frac{1}{\det{A}} \;.
     \label{gaussian integral}
 \end{equation}
 The result of the ${a}$-integration is a multiplicative constant in the partition function. Since expectation values consist of taking derivatives of the logarithm of the partition function, this constant can be neglected. Finally, the effective partion function for the electrons becomes
@@ -253,10 +265,10 @@ with the effetive action
 \end{equation}
 where we have defined $\epsilon_k = \left(-i\hbar\omega_n - \mu + \epsilon_{\textbf{k}}\right)$.
 \section{Hubbard-Stratonovich transformation}
-\todo{fikse beta V faktorer, introdusere eksplisitt definisjon av V, rydde opp i indekser og summer }
+\todo{ rydde opp i indekser og summer }
 The action in equation~\cref{effective action} involves four fermion fields, and can therefore not be computed exactly. We therefore proceed by constructing a mean field theory using the Hubbard-Stratonovich(HS) transformation in the cooper channel~\cite{Altland}. Starting with a path integral with a general four field action 
 \begin{equation}
-    Z = \int D(C^{\dagger}, C) e^{-\frac{1}{2\beta}C^{\dagger}_{\alpha} C^{\dagger}_{\alpha'} V_{\alpha \alpha' \beta \beta'} C_{\beta} C_{\beta'}} \;,
+    Z = \int D(C^{\dagger}, C) e^{-\frac{1}{2\beta}C^{\dagger}_{\alpha} C^{\dagger}_{\alpha'} V_{\alpha \alpha' \beta \beta'} C_{\beta} C_{\beta'} / \hbar \;,
     \label{general four field path integral}
 \end{equation}
 where we use the Einstein summation convention, and each $\alpha_i$ is a set of quantum numbers. In order to perform the HS-transformation we need the inverse of the potential $V_{\alpha_1 \alpha_2 \alpha_3 \alpha_4}$. The fermionic commutation relations of the coherent states, lead to a unconventional inverse relation. In order to see this, we define the representation matrices $V_{\alpha_1 \alpha_2 \alpha_3 \alpha_4}$ and $V^{-1}_{\alpha_1 \alpha_2 \alpha_3 \alpha_4}$ in terms of the abstract operators $\hat{V}$ and $\hat{V}^{-1}$
@@ -271,7 +283,7 @@ Using this definition
 \end{equation}
 Where we have used the identity $\sum_{\beta} \ket{\beta}{\bra{\beta}} = 1$ and the anti-commutation relations between the coherent state creation/anihilation operators $C^{\dagger}_{\alpha}$ and ${C_{\alpha'}}$. Introdusing the new bosonic fields $\bar{\Delta}$ and $\Delta$, using the identity
 \begin{equation} 
-    1 = \int D(\bar{\Delta},\Delta) e^{\beta \bar{\Delta}_{\alpha \alpha'} V^{-1}_{\alpha \alpha' \beta \beta'} \Delta_{\beta \beta'} }\;,
+    1 = \int D(\bar{\Delta},\Delta) e^{\beta \bar{\Delta}_{\alpha \alpha'} V^{-1}_{\alpha \alpha' \beta \beta'} \Delta_{\beta \beta'} / \hbar }\;,
 \end{equation}
 and rescaling the fields
 \begin{align}
@@ -295,25 +307,28 @@ allows us to rewrite the action in~\cref{general four field path integral}
        &= \beta\bar{\Delta}_{\alpha \alpha'} V^{-1}_{\alpha \alpha' \beta \beta'} \Delta_{\beta \beta'} - \left( C^{\dagger}_{\gamma} C^{\dagger}_{\gamma'} \Delta_{\gamma \gamma'}+ \bar{\Delta}_{\gamma \gamma'}  C_{\gamma} C_{\gamma'}\right) \nonumber \;.
 \end{align}
 Where we have used~\cref{inverse relation} to resolve the $V V^{-1}$ and $V^{-1} V V^{-1}$ terms. 
-
-Using the HS-transformation~\cref{hs-transformation}, and introducing the new coordinates $Q = (k + k') / 2 $, $p = p' + q$ and $p' = (k - k')/2$ we can rewrite the effective action in~\cref{effective action}
+In order to perform the HS-transformation, we must first rewrite the potential 
+\begin{equation}
+    V_{Qpp'} = \frac{2}{N} \sum_s \frac{g_{\textbf{Q} - \textbf{p'},s}^{(\textbf{p} - \textbf{p'})} g_{\textbf{Q} + \textbf{p'},s}^{(\textbf{p'} - \textbf{p}})}{\left(-i\hbar\Omega_{(p-p')_0} + \hbar \omega_{(\textbf{p} - \textbf{p'})}\right)}\;,
+\end{equation}
+where we have introduced the coordinates $Q = (k + k') / 2 $, $p = p' + q$ and $p' = (k - k')/2$. Using the HS-transformation~\cref{hs-transformation}, we can rewrite the effective action in~\cref{effective action}
 \begin{align}
- - \hbar S_{eff}[C^{\dagger},C] &= \sum_{k,\sigma} \epsilon_k C^{\dagger}_{k,\sigma} C_{k,\sigma} - \frac{1}{2\beta} \sum_{Q,s,p,p',\sigma,\sigma'} C^{\dagger}_{Q + p,\sigma'} C^{\dagger}_{Q - p,\sigma} V_{Q s p p'}  C_{Q + p',\sigma'} C_{Q - p',\sigma}\label{effective action transformed}\\
+ - \hbar S_{eff}[C^{\dagger},C] &= -\sum_{k,\sigma} \epsilon_k C^{\dagger}_{k,\sigma} C_{k,\sigma} - \frac{1}{2\beta} \sum_{Q,p,p',\sigma,\sigma'} C^{\dagger}_{Q + p,\sigma'} C^{\dagger}_{Q - p,\sigma} V_{Q p p'}  C_{Q + p',\sigma'} C_{Q - p',\sigma}\label{effective action transformed}\\
                        %
-                       &=  \sum_{k,\sigma} \epsilon_k C^{\dagger}_{k,\sigma} C_{k,\sigma} +  \sum_{Q,s,p,p',\sigma,\sigma'} \beta \bar{\Delta}^{Q}_{\sigma' \sigma}(p) V^{-1}_{Q s p p'} \Delta^{Q}_{\sigma' \sigma}(p')\nonumber\\
+                       &=  -\sum_{k,\sigma} \epsilon_k C^{\dagger}_{k,\sigma} C_{k,\sigma} +  \sum_{Q,p,p',\sigma,\sigma'} \beta \bar{\Delta}^{Q}_{\sigma' \sigma}(p) V^{-1}_{Q p p'} \Delta^{Q}_{\sigma' \sigma}(p')\nonumber\\
                        %
-                       &- \sum_{Q}\left( C^{\dagger}_{Q + p,\sigma'} C^{\dagger}_{Q - p,\sigma} \Delta^{Q}_{\sigma' \sigma}(p)+ \bar{\Delta}^{Q}_{\sigma' \sigma}(p)  C_{Q + p,\sigma'} C_{Q - p,\sigma}\right)\nonumber\\
+                       &- \sum_{Q,p,\sigma,\sigma'}\left( C^{\dagger}_{Q + p,\sigma'} C^{\dagger}_{Q - p,\sigma} \Delta^{Q}_{\sigma' \sigma}(p)+ \bar{\Delta}^{Q}_{\sigma' \sigma}(p)  C_{Q + p,\sigma'} C_{Q - p,\sigma}\right)\nonumber\\
                        %
-                       &:= \sum_{Q,s,p,p',\sigma,\sigma'} \beta \bar{\Delta}^{Q}_{\sigma' \sigma}(p) V^{-1}_{Q s p p'} \Delta^{Q}_{\sigma' \sigma}(p') + \frac{1}{2} \sum_{Q p} \bar{\Psi}_{Q p} G^{-1}_ {Q p} \Psi_{Q p}\;,
+                       &:= \sum_{Q,p,p',\sigma,\sigma'} \beta \bar{\Delta}^{Q}_{\sigma' \sigma}(p) V^{-1}_{Q p p'} \Delta^{Q}_{\sigma' \sigma}(p') + \frac{1}{2} \sum_{Q p} \bar{\Psi}_{Q p} G^{-1}_ {Q p} \Psi_{Q p}\;,
 \end{align}
 with 
 \begin{equation}
      G_{Q p}^{-1} = 
 \begin{bmatrix}
-\epsilon_{Q + p} & 0                & \Delta^{Q}_{\uparrow \uparrow}(p) & \Delta^{Q}_{\uparrow \downarrow}(p) \\
-         0       & \epsilon_{Q + p} & \Delta^{Q}_{\downarrow \uparrow}(p) & \Delta^{Q}_{\downarrow \downarrow}(p) \\
-         \bar{\Delta}^{Q}_{\uparrow \uparrow}(p)       & \bar{\Delta}^{Q}_{\uparrow \downarrow}(p)                & -\epsilon_{Q-p} & 0 \\
-         \bar{\Delta}^{Q}_{\downarrow \uparrow}(p)       & \bar{\Delta}^{Q}_{\downarrow \downarrow}(p)                & 0               & -\epsilon_{Q-p} \\
+-\epsilon_{Q + p} & 0                & \Delta^{Q}_{\uparrow \uparrow}(p) & \Delta^{Q}_{\uparrow \downarrow}(p) \\
+         0       & -\epsilon_{Q + p} & \Delta^{Q}_{\downarrow \uparrow}(p) & \Delta^{Q}_{\downarrow \downarrow}(p) \\
+         \bar{\Delta}^{Q}_{\uparrow \uparrow}(p)       & \bar{\Delta}^{Q}_{\uparrow \downarrow}(p)                & +\epsilon_{Q-p} & 0 \\
+         \bar{\Delta}^{Q}_{\downarrow \uparrow}(p)       & \bar{\Delta}^{Q}_{\downarrow \downarrow}(p)                & 0               & +\epsilon_{Q-p} \\
 \end{bmatrix}\;,
 \end{equation}
 and
@@ -326,48 +341,87 @@ and
      C^{\dagger}_{Q - p,\downarrow}
 \end{bmatrix}\;.
 \end{equation} 
-At this point it is necessary to make the approximation that $Q$ has a fixed value, so that we can remove the sum over $Q$ in~\cref{effective action transformed}. The value of $Q$ is chosen so that it gives the highest possible critical temperature~($T_c$), making it responsible for the phase transition. After making the choice of $Q$, all the $\Psi_{Q p}$-vectors are independent, and we can perform the Gaussian integrals 
+At this point it is necessary to make the approximation that $Q$ has a fixed value, so that we can remove the sum over $Q$ in~\cref{effective action transformed}. The value of $Q$ is chosen so that it gives the highest possible critical temperature~($T_c$), making it responsible for the phase transition. After fixing $Q$, we can perform the integral  
 \begin{align}
-    \int D(C^{\dagger},C) e^{\frac{1}{2} \sum_{p} \bar{\Psi}_{p} G^{-1}_ {p} \Psi_{p}} &= \Pi_p \det{G^{-1}(p)} \nonumber\\
-                                                                                               &= e^{\sum_p \Tr{\ln{G^{-1}(p)}}} \;\nonumber,
+    \int D(C^{\dagger},C) e^{\frac{1}{2} \sum_{p} \bar{\Psi}_{p} G^{-1}_ {p} \Psi_{p} / \hbar} &= \Pi_p \sqrt{det{G^{-1}(p)}} \nonumber\\
+                                                                                               &= e^{\sum_p \frac{1}{2}\Tr{\ln{G^{-1}(p)}}} \;\nonumber,
 \end{align}
-where we have used the identity $\ln{\det{A}} = \Tr{\ln{A}}$. The path integral~\cref{effective partion function} then becomes
+where we have used the identity $\ln{\det{A}} = \Tr{\ln{A}}$. The square-root stems from the fact that we are integrating over the Nambu spinors $\bar{\Psi}_{Q p}$ and $\Psi_{Q p}$~\cite{Wegner2016,Hugdal2019} \todo{tror jeg forstår pfaffian ish nå, burde jeg skrive om det eller holder det med referanse?} The path integral~\cref{effective partion function} then becomes
 \begin{equation}
-    Z_{eff} = \int D(\bar{\Delta}, \Delta) e^{\left(\beta\sum_{s,p,p',\sigma,\sigma'} \bar{\Delta}_{\sigma' \sigma}(p) V^{-1}_{s p p'} \Delta_{\sigma' \sigma}(p') + \sum_p \Tr{\ln{G^{-1}(p)}}\right) / \hbar}\;.
+    Z_{eff} = \int D(\bar{\Delta}, \Delta) e^{\left(\beta\sum_{p,p',\sigma,\sigma'} \bar{\Delta}_{\sigma' \sigma}(p) V^{-1}_{p p'} \Delta_{\sigma' \sigma}(p') + \frac{1}{2} \sum_p \Tr{\ln{G^{-1}(p)}}\right) / \hbar}\;.
 \end{equation}
 The fermionic fields $C^{\dagger}$ and $C$ have now been replaced with the bosonic fields $\Delta$ and $\bar{\Delta}$.
 \section{Mean Field Theory}
+\todo{1. Komme til schlawin sin likning 2. Finn relasjon mellom Delta og Deltabar}
 To determine the mean field configuration of $\Delta$, we solve the stationary phase equation
-\todo{tror sluttresultat er rett, men tydeligjør fremgang}
 \begin{align}
     \frac{\delta S_{eff}}{\delta \Delta_{\sigma_1,\sigma_2}^{p}} &= 0 \\
-    \beta\sum_{s,p'} \bar{\Delta}_{\sigma_1 \sigma_2}(p') V^{-1}_{s p' p} + \sum_{p'} \Tr{G(p') 
+    \beta\sum_{p'} \bar{\Delta}_{\sigma_1 \sigma_2}(p') V^{-1}_{p' p} + \frac{1}{2} \Tr{G(p) 
     \begin{bmatrix}
     0 & 0 & \delta_{\sigma_1 \sigma_2, \uparrow \uparrow} & \delta_{\sigma_1 \sigma_2, \uparrow \downarrow} \\
     0 & 0 & \delta_{\sigma_1 \sigma_2, \downarrow \uparrow} & \delta_{\sigma_1 \sigma_2, \downarrow \downarrow} \\ 
     0 & 0 & 0 & 0 \\ 
     0 & 0 & 0 & 0
-    \end{bmatrix} \delta_{p, p'}} &= 0
+    \end{bmatrix}} &=0 \\
+    \beta \bar{\Delta}_{\sigma_1 \sigma_2}(p) + \frac{1}{2} \sum_{p'} \Tr{G(p') 
+    \begin{bmatrix}
+    0 & 0 & \delta_{\sigma_1 \sigma_2, \uparrow \uparrow} & \delta_{\sigma_1 \sigma_2, \uparrow \downarrow} \\
+    0 & 0 & \delta_{\sigma_1 \sigma_2, \downarrow \uparrow} & \delta_{\sigma_1 \sigma_2, \downarrow \downarrow} \\ 
+    0 & 0 & 0 & 0 \\ 
+    0 & 0 & 0 & 0
+    \end{bmatrix}} V_{p' p} &=0
 \end{align}
-%\textbf{Spørsmål til Møtet 13 sep:
-%\\
-%Hvor detaljert burde jeg skrive om path integral, matsubara, grassman tall etc 
-%\\
-%Gå igjennom små spm i kap 3. Henger sammen med spm over
-%\\
-%\\
-%s331 bytte kordinater inne i determinant
-%}
-$\Tr{G(p) B(\sigma_1 = \uparrow \uparrow)} = $
-\begin{equation}
-\frac{\Delta_{dd} \bar{\Delta}_{dd} \bar{\Delta}_{uu} - \Delta_{dd} \bar{\Delta}_{du} \bar{\Delta}_{ud} + \bar{\Delta}_{uu} \epsilon_{Q-p}^{2}}{\Delta_{dd} \Delta_{uu} \bar{\Delta}_{dd} \bar{\Delta}_{uu} - \Delta_{dd} \Delta_{uu} \bar{\Delta}_{du} \bar{\Delta}_{ud} + \Delta_{dd} \bar{\Delta}_{dd} \epsilon_{Q+p} \epsilon_{Q-p} - \Delta_{du} \Delta_{ud} \bar{\Delta}_{dd} \bar{\Delta}_{uu} + \Delta_{du} \Delta_{ud} \bar{\Delta}_{du} \bar{\Delta}_{ud} + \Delta_{du} \bar{\Delta}_{ud} \epsilon_{Q+p} \epsilon_{Q-p} + \Delta_{ud} \bar{\Delta}_{du} \epsilon_{Q-p}^{2} + \Delta_{uu} \bar{\Delta}_{uu} \epsilon_{Q-p}^{2} + \epsilon_{Q+p} \epsilon_{Q-p}^{3}}
-\end{equation}
-$\Tr{G(p) B(\sigma_1 = \uparrow \downarrow)} = $
-\begin{equation}
-\frac{- \Delta_{du} \bar{\Delta}_{dd} \bar{\Delta}_{uu} + \Delta_{du} \bar{\Delta}_{du} \bar{\Delta}_{ud} + \bar{\Delta}_{du} \epsilon_{Q-p}^{2}}{\Delta_{dd} \Delta_{uu} \bar{\Delta}_{dd} \bar{\Delta}_{uu} - \Delta_{dd} \Delta_{uu} \bar{\Delta}_{du} \bar{\Delta}_{ud} + \Delta_{dd} \bar{\Delta}_{dd} \epsilon_{Q+p} \epsilon_{Q-p} - \Delta_{du} \Delta_{ud} \bar{\Delta}_{dd} \bar{\Delta}_{uu} + \Delta_{du} \Delta_{ud} \bar{\Delta}_{du} \bar{\Delta}_{ud} + \Delta_{du} \bar{\Delta}_{ud} \epsilon_{Q+p} \epsilon_{Q-p} + \Delta_{ud} \bar{\Delta}_{du} \epsilon_{Q-p}^{2} + \Delta_{uu} \bar{\Delta}_{uu} \epsilon_{Q-p}^{2} + \epsilon_{Q+p} \epsilon_{Q-p}^{3}}
-\end{equation}
-
+where the trace is calculated using computer algebra software
+\begin{align}
+&\Tr{G(p) 
+    \begin{bmatrix}
+    0 & 0 & \delta_{\sigma_1 \sigma_2, \uparrow \uparrow} & \delta_{\sigma_1 \sigma_2, \uparrow \downarrow} \\
+    0 & 0 & \delta_{\sigma_1 \sigma_2, \downarrow \uparrow} & \delta_{\sigma_1 \sigma_2, \downarrow \downarrow} \\ 
+    0 & 0 & 0 & 0 \\ 
+    0 & 0 & 0 & 0
+    \end{bmatrix}}= \\ 
+                &+ \frac{\delta_{dd}}{\det{G^{-1}}} \left(\Delta_{uu} \bar{\Delta}_{dd} \bar{\Delta}_{uu} - \Delta_{uu} \bar{\Delta}_{du} \bar{\Delta}_{ud} + \bar{\Delta}_{dd} \epsilon_{Q+p} \epsilon_{Q-p}\right) \nonumber\\ 
+                &+ \frac{\delta_{du}}{\det{G^{-1}}} \left(- \Delta_{ud} \bar{\Delta}_{dd} \bar{\Delta}_{uu} + \Delta_{ud} \bar{\Delta}_{du} \bar{\Delta}_{ud} + \bar{\Delta}_{ud} \epsilon_{Q+p} \epsilon_{Q-p}\right) \nonumber\\
+                &+ \frac{\delta_{ud}}{\det{G^{-1}}} \left(- \Delta_{du} \bar{\Delta}_{dd} \bar{\Delta}_{uu} + \Delta_{du} \bar{\Delta}_{du} \bar{\Delta}_{ud} + \bar{\Delta}_{du} \epsilon_{Q+p} \epsilon_{Q-p}\right) \nonumber\\
+                &+ \frac{\delta_{uu}}{\det{G^{-1}}} \left(\Delta_{dd} \bar{\Delta}_{dd} \bar{\Delta}_{uu} - \Delta_{dd} \bar{\Delta}_{du} \bar{\Delta}_{ud} + \bar{\Delta}_{uu} \epsilon_{Q+p} \epsilon_{Q-p}\right) \nonumber\\ 
+\end{align}
+Now we restrict ourselves to only one of the gaps beeing nonzero, for simplicity we choose $\Delta_{\uparrow \uparrow}^{p}$. This yields the gap equation
+\begin{align}
+    \beta{\bar{\Delta}}_{uu}^{p} + \frac{1}{2} \sum_{p'} \frac{\bar{\Delta}_{uu}^{p'}  V_{p'p}}{\Delta_{uu}^{p'} \bar{\Delta}_{uu}^{p'} + \epsilon_{Q+p'} \epsilon_{Q-p'}}  &= 0\nonumber\\
+    %
+    \beta{\bar{\Delta}}_{uu}^{p} + \frac{1}{N} \sum_{p',s} \frac{\bar{\Delta}_{uu}^{p'} g_{\textbf{Q} - \textbf{p},s}^{(\textbf{p'} - \textbf{p})} g_{\textbf{Q} + \textbf{p},s}^{(\textbf{p} - \textbf{p'})}}{\left(\Delta_{uu}^{p'} \bar{\Delta}_{uu}^{p'} + \epsilon_{Q+p'} \epsilon_{Q-p'}\right) \left(-i\hbar\Omega_{(p'-p)_0} + \hbar \omega_{(\textbf{p'} - \textbf{p})}\right)}  &= 0\nonumber \\
+\end{align}
+Where we have used $\det{G^{-1}}(p') = \epsilon_{Q+p'} \epsilon_{Q-p'} \left( \Delta^{p'}_{uu} \bar{\Delta}^{p'}_{uu} + \epsilon_{Q+p'} \epsilon_{Q-p'}\right)$
+\\
+\\
+TEST:
+må finne relasjon mellom $\Delta$ og $\bar{\Delta}$
+\begin{align}
+&\Tr{G(p) 
+    \begin{bmatrix}
+    0 & 0 & 0 & 0 \\
+    0 & 0 & 0 & 0 \\ 
+    1 & 0 & 0 & 0 \\ 
+    0 & 0 & 0 & 0
+    \end{bmatrix}}= \\ 
+&\Delta_{dd} \Delta_{uu} \bar{\Delta}_{dd} - \Delta_{du} \Delta_{ud} \bar{\Delta}_{dd} + \Delta_{uu} \epsilon_{Q+p} \epsilon_{Q-p}
+\end{align}
+To likninger for $\Delta_{uu}$ og $\bar{\Delta_{dd}}$ (all $\Delta$ depend on $p'$)
+\begin{align}
+    &\beta{\bar{\Delta}}_{uu} + \frac{1}{2} \sum_{p'} \frac{\delta_{uu}}{\det{G^{-1}}}\left(\Delta_{dd} \bar{\Delta}_{dd} \bar{\Delta}_{uu} - \Delta_{dd} \bar{\Delta}_{du} \bar{\Delta}_{ud} + \bar{\Delta}_{uu} \sum_{p'} \epsilon_{Q+p'} \epsilon_{Q-p'}\right) V_{p'p} = 0\nonumber\\
+    &\beta{\Delta}_{uu} + \frac{1}{2} \sum_{p'} \frac{\delta_{uu}}{\det{G^{-1}}} \left(\Delta_{dd} \Delta_{uu} \bar{\Delta}_{dd} - \Delta_{du} \Delta_{ud} \bar{\Delta}_{dd} + \Delta_{uu} \epsilon_{Q+p'} \epsilon_{Q-p'}\right) V_{p'p} = 0\nonumber
+\end{align}
+\textbf{Virker som at man bare kan konjugere uten videre å få samme gap likning?}
+\\
+\\
 \textbf{Burde man ikke kunne bruke at interaksjon egt er uavhengi av spin?}
+\\
+\\
+\textbf{Tempere s 389, forstår ikke hva han sier om integration measure. Virker ikke som dette er et problem i Atland?}
 \printbibliography
+
+
+
+
 
 \end{document}
