@@ -394,6 +394,23 @@ Now we restrict ourselves to only one of the gaps beeing nonzero, for simplicity
 Where we have used $\det{G^{-1}}(p') = \epsilon_{Q+p'} \epsilon_{Q-p'} \left( \Delta^{p'}_{uu} \bar{\Delta}^{p'}_{uu} + \epsilon_{Q+p'} \epsilon_{Q-p'}\right)$
 \\
 \\
+TEST:assuming that $\Delta$ is frequency independent, the frequency summation reduces to ($n = p_0'$), $\epsilon_{\textbf{k}} = \epsilon_{\textbf{k}} - \mu$
+\begin{align}
+         &=  \sum_{n} \frac{1}{\abs{\Delta}^2 + \epsilon_{Q+p'} \epsilon_{Q-p'}} \frac{1}{-i\hbar\Omega_{(p'-p)_0} + \hbar \omega_{(\textbf{p'} - \textbf{p})}} \\
+         %
+         &=  \sum_{n} \frac{1}{\abs{\Delta}^2 + \left(-i\hbar\omega_n - i \hbar \omega_{Q_0} + \epsilon_{\textbf{Q} + \textbf{p'}}\right) \left(i\hbar\omega_n - i \hbar \omega_{Q_0} + \epsilon_{\textbf{Q} - \textbf{p'}}\right)} \frac{-1/\hbar}{i\omega_{n} - \left(-\omega_{(\textbf{p'} - \textbf{p})}+ i\omega_{p_0}\right)} \\
+         %
+         &=  -\frac{1}{\hbar}\sum_{n} \frac{1}{-\hbar^2 (i \omega_n)^2 + \hbar\left(\epsilon_{\textbf{Q} + \textbf{p'}} - \epsilon_{\textbf{Q} - \textbf{p'}}\right)i\omega_n +\left(- i \hbar \omega_{Q_0} + \epsilon_{\textbf{Q} + \textbf{p'}}\right)\left(- i \hbar \omega_{Q_0} + \epsilon_{\textbf{Q} - \textbf{p'}}\right) + \abs{\Delta}^2} \frac{1}{i\omega_{n} - \left(-\omega_{(\textbf{p'} - \textbf{p})}+ i\omega_{p_0}\right)}\\
+         %
+         &= -\frac{1}{\hbar} \sum_{n} \frac{1}{\left(i\omega_n - E_+\right)\left(i\omega_n - E_-\right)\left(i\omega_{n} - \left(-\omega_{(\textbf{p'} - \textbf{p})}+ i\omega_{p_0}\right)\right)} \\
+         &= -\frac{1}{\hbar} \frac{\beta / \left( e^{\beta E_+} + 1\right)}{\left(E_+ - E_-\right)\left(E_+ - \left(-\omega_{(\textbf{p'} - \textbf{p})}+ i\omega_{p_0}\right)\right)} \\
+         &  -\frac{1}{\hbar} \frac{\beta / \left( e^{\beta E_-} + 1\right)}{\left(E_- - E_+\right)\left(E_- - \left(-\omega_{(\textbf{p'} - \textbf{p})}+ i\omega_{p_0}\right)\right)} \\
+         &  -\frac{1}{\hbar} \frac{\beta / \left( e^{\beta \left(-\omega_{(\textbf{p'} - \textbf{p})}+ i\omega_{p_0}\right)} + 1\right)}{\left(\left(-\omega_{(\textbf{p'} - \textbf{p})}+ i\omega_{p_0}\right) - E_+\right)\left(\left(-\omega_{(\textbf{p'} - \textbf{p})}+ i\omega_{p_0}\right) - E_-\right)}
+\end{align}
+setting $\omega_{Q_0} = 0$ (hvorfor kan vi gjøre dette?)
+\begin{equation}
+        E_{\pm} = \frac{\left(\epsilon_{\textbf{Q} + \textbf{p'}} - \epsilon_{\textbf{Q} - \textbf{p'}}\right) \pm \sqrt{\left(\epsilon_{\textbf{Q} + \textbf{p'}} + \epsilon_{\textbf{Q} - \textbf{p'}}\right)^2 + 4 \abs{\Delta}^2 } }{2\hbar}
+\end{equation} 
 TEST:
 må finne relasjon mellom $\Delta$ og $\bar{\Delta}$
 \begin{align}
