@@ -265,7 +265,6 @@ with the effetive action
 \end{equation}
 where we have defined $\epsilon_k = \left(-i\hbar\omega_n - \mu + \epsilon_{\textbf{k}}\right)$.
 \section{Hubbard-Stratonovich transformation}
-\todo{ rydde opp i indekser og summer }
 The action in equation~\cref{effective action} involves four fermion fields, and can therefore not be computed exactly. We therefore proceed by constructing a mean field theory using the Hubbard-Stratonovich(HS) transformation in the cooper channel~\cite{Altland}. Starting with a path integral with a general four field action 
 \begin{equation}
     Z = \int D(C^{\dagger}, C) e^{-\frac{1}{2\beta}C^{\dagger}_{\alpha} C^{\dagger}_{\alpha'} V_{\alpha \alpha' \beta \beta'} C_{\beta} C_{\beta'} / \hbar \;,
@@ -292,7 +291,7 @@ and rescaling the fields
 \end{align}
 allows us to rewrite the action in~\cref{general four field path integral} 
 \begin{align}
-     - \hbar S &= -\frac{1}{2\beta}C^{\dagger}_{\alpha} C^{\dagger}_{\alpha'} V_{\alpha \alpha' \beta \beta'} C_{\beta} C_{\beta'} \nonumber\\
+       S &= -\frac{1}{2\beta}C^{\dagger}_{\alpha} C^{\dagger}_{\alpha'} V_{\alpha \alpha' \beta \beta'} C_{\beta} C_{\beta'} \nonumber\\
        %
        &\rightarrow \beta \left(\bar{\Delta}_{\alpha \alpha'} + \frac{1}{2 \beta} C^{\dagger}_{\gamma} C^{\dagger}_{\gamma'} V_{\gamma,\gamma' \alpha' \alpha}\right) V^{-1}_{\alpha \alpha' \beta \beta'} 
        %
@@ -310,25 +309,27 @@ Where we have used~\cref{inverse relation} to resolve the $V V^{-1}$ and $V^{-1}
 In order to perform the HS-transformation, we must first rewrite the potential 
 \begin{equation}
     V_{Qpp'} = \frac{2}{N} \sum_s \frac{g_{\textbf{Q} + \textbf{p'},s}^{(\textbf{p} - \textbf{p'})} g_{\textbf{Q} - \textbf{p'},s}^{(\textbf{p'} - \textbf{p}})}{\left(-i\hbar\Omega_{(p-p')_0} + \hbar \omega_{(\textbf{p} - \textbf{p'})}\right)}\;,
+    \label{potential in new coordinates}
 \end{equation}
 where we have introduced the coordinates $Q = (k + k') / 2 $, $p = p' + q$ and $p' = (k - k')/2$. Using the HS-transformation~\cref{hs-transformation}, we can rewrite the effective action in~\cref{effective action}
 \begin{align}
- - \hbar S_{eff}[C^{\dagger},C] &= -\sum_{k,\sigma} \epsilon_k C^{\dagger}_{k,\sigma} C_{k,\sigma} - \frac{1}{2\beta} \sum_{Q,p,p',\sigma,\sigma'} C^{\dagger}_{Q + p,\sigma'} C^{\dagger}_{Q - p,\sigma} V_{Q p p'}  C_{Q + p',\sigma'} C_{Q - p',\sigma}\label{effective action transformed}\\
+S_{eff}[C^{\dagger},C] &= \sum_{k,\sigma} \epsilon_k C^{\dagger}_{k,\sigma} C_{k,\sigma} -  \frac{1}{2\beta} \sum_{Q,p,p',\sigma,\sigma'} C^{\dagger}_{Q + p,\sigma'} C^{\dagger}_{Q - p,\sigma} V_{Q p p'} C_{Q - p',\sigma}  C_{Q + p',\sigma'}\label{effective action transformed}\\
                        %
-                       &=  -\sum_{k,\sigma} \epsilon_k C^{\dagger}_{k,\sigma} C_{k,\sigma} +  \sum_{Q,p,p',\sigma,\sigma'} \beta \bar{\Delta}^{Q}_{\sigma' \sigma}(p) V^{-1}_{Q p p'} \Delta^{Q}_{\sigma' \sigma}(p')\nonumber\\
+                       &=  \sum_{k,\sigma} \epsilon_k C^{\dagger}_{k,\sigma} C_{k,\sigma} +  \sum_{Q,p,p',\sigma,\sigma'} \beta \bar{\Delta}^{Q}_{\sigma' \sigma}(p) V^{-1}_{Q p p'} \Delta^{Q}_{\sigma \sigma'}(p')\nonumber\\
                        %
-                       &- \sum_{Q,p,\sigma,\sigma'}\left( C^{\dagger}_{Q + p,\sigma'} C^{\dagger}_{Q - p,\sigma} \Delta^{Q}_{\sigma' \sigma}(p)+ \bar{\Delta}^{Q}_{\sigma' \sigma}(p)  C_{Q + p,\sigma'} C_{Q - p,\sigma}\right)\nonumber\\
+                       &- \sum_{Q,p,\sigma,\sigma'}\left( C^{\dagger}_{Q + p,\sigma'} C^{\dagger}_{Q - p,\sigma} \Delta^{Q}_{\sigma \sigma'}(p)+ \bar{\Delta}^{Q}_{\sigma' \sigma}(p)  C_{Q - p,\sigma} C_{Q + p,\sigma'} \right)\nonumber\\
                        %
-                       &:= \sum_{Q,p,p',\sigma,\sigma'} \beta \bar{\Delta}^{Q}_{\sigma' \sigma}(p) V^{-1}_{Q p p'} \Delta^{Q}_{\sigma' \sigma}(p') + \frac{1}{2} \sum_{Q p} \bar{\Psi}_{Q p} G^{-1}_ {Q p} \Psi_{Q p}\;,
+                       &:= \sum_{Q,p,p',\sigma,\sigma'} \beta \bar{\Delta}^{Q}_{\sigma' \sigma}(p) V^{-1}_{Q p p'} \Delta^{Q}_{\sigma \sigma'}(p') + \frac{1}{2} \sum_{Q p} \bar{\Psi}_{Q p} G^{-1}_ {Q p} \Psi_{Q p}\;,
 \end{align}
 with 
+\todo{fortegn på diagonalen?}
 \begin{equation}
      G_{Q p}^{-1} = 
 \begin{bmatrix}
--\epsilon_{Q + p} & 0                & \Delta^{Q}_{\uparrow \uparrow}(p) & \Delta^{Q}_{\uparrow \downarrow}(p) \\
-         0       & -\epsilon_{Q + p} & \Delta^{Q}_{\downarrow \uparrow}(p) & \Delta^{Q}_{\downarrow \downarrow}(p) \\
-         \bar{\Delta}^{Q}_{\uparrow \uparrow}(p)       & \bar{\Delta}^{Q}_{\uparrow \downarrow}(p)                & +\epsilon_{Q-p} & 0 \\
-         \bar{\Delta}^{Q}_{\downarrow \uparrow}(p)       & \bar{\Delta}^{Q}_{\downarrow \downarrow}(p)                & 0               & +\epsilon_{Q-p} \\
+\epsilon_{Q + p} & 0                & \Delta^{Q}_{\uparrow \uparrow}(p) & \Delta^{Q}_{\uparrow \downarrow}(p) \\
+         0       & \epsilon_{Q + p} & \Delta^{Q}_{\downarrow \uparrow}(p) & \Delta^{Q}_{\downarrow \downarrow}(p) \\
+         \bar{\Delta}^{Q}_{\uparrow \uparrow}(p)       & \bar{\Delta}^{Q}_{\downarrow \uparrow}(p)                & -\epsilon_{Q-p} & 0 \\
+         \bar{\Delta}^{Q}_{\uparrow \downarrow }(p)       & \bar{\Delta}^{Q}_{\downarrow \downarrow}(p)                & 0               & -\epsilon_{Q-p} \\
 \end{bmatrix}\;,
 \end{equation}
 and
@@ -348,7 +349,7 @@ At this point it is necessary to make the approximation that $Q$ has a fixed val
 \end{align}
 where we have used the identity $\ln{\det{A}} = \Tr{\ln{A}}$. The square-root stems from the fact that we are integrating over the Nambu spinors $\bar{\Psi}_{Q p}$ and $\Psi_{Q p}$~\cite{Wegner2016,Hugdal2019} \todo{tror jeg forstår pfaffian ish nå, burde jeg skrive om det eller holder det med referanse?} The path integral~\cref{effective partion function} then becomes
 \begin{equation}
-    Z_{eff} = \int D(\bar{\Delta}, \Delta) e^{\left(\beta\sum_{p,p',\sigma,\sigma'} \bar{\Delta}_{\sigma' \sigma}(p) V^{-1}_{p p'} \Delta_{\sigma' \sigma}(p') + \frac{\hbar}{2} \sum_p \Tr{\ln{G^{-1}(p)}}\right) / \hbar}\;. 
+    Z_{eff} = \int D(\bar{\Delta}, \Delta) e^{-\left(\beta\sum_{p,p',\sigma,\sigma'} \bar{\Delta}_{\sigma' \sigma}(p) V^{-1}_{p p'} \Delta_{\sigma' \sigma}(p') + \frac{\hbar}{2} \sum_p \Tr{\ln{G^{-1}(p)}}\right) / \hbar}\;. 
 \end{equation}
 The fermionic fields $C^{\dagger}$ and $C$ have now been replaced with the bosonic fields $\Delta$ and $\bar{\Delta}$.
 \section{Mean Field Theory}
@@ -373,7 +374,7 @@ To determine the mean field configuration of $\bar{\Delta}$, we solve the statio
 \end{align}
 The analogus equation for $\Delta$ becomes
 \begin{align}
-    \beta \Delta_{\sigma_1,\sigma_2}^p + \frac{\hbar}{2} \sum_{p'} V_{pp'} \Tr{G(p) 
+    \beta \Delta_{\sigma_1,\sigma_2}^p + \frac{\hbar}{2} \sum_{p'} V_{pp'} \Tr{G(p') 
     \begin{bmatrix}
     0 & 0 & 0 & 0 \\
     0 & 0 & 0 & 0 \\ 
@@ -409,67 +410,61 @@ and
     &+ \frac{\delta_{ud}}{\det{G^{-1}}} \left(- \Delta_{dd} \Delta_{uu} \bar{\Delta}_{du} + \Delta_{du} \Delta_{ud} \bar{\Delta}_{du} + \Delta_{du} \epsilon_{Q+p} \epsilon_{Q-p}\right)\nonumber \\
     &+ \frac{\delta_{uu}}{\det{G^{-1}}} \left(\Delta_{dd} \Delta_{uu} \bar{\Delta}_{dd} - \Delta_{du} \Delta_{ud} \bar{\Delta}_{dd} + \Delta_{uu} \epsilon_{Q+p} \epsilon_{Q-p}\right)\;.
 \end{align}
+We now want to restrict the gap equations to only one of the gaps beeing nonzero. The equations for $\Delta_{uu}$ and $\Delta_{dd}$ triviall
 
-Gap equations for $\bar{\Delta}$
+Gives the equations
 \begin{align}
-     &\beta{\bar{\Delta}}_{uu}^{p} + \frac{\hbar}{2} \sum_{p'} \frac{\bar{\Delta}_{uu}^{p'}  V_{p'p}}{\Delta_{uu}^{p'} \bar{\Delta}_{uu}^{p'} + \epsilon_{Q+p'} \epsilon_{Q-p'}}  = 0\nonumber\\
+     &\beta{\bar{\Delta}}_{uu}^{p} + \frac{\hbar}{2} \sum_{p'} \frac{\bar{\Delta}_{uu}^{p'}}{\Delta_{uu}^{p'} \bar{\Delta}_{uu}^{p'} + \epsilon_{Q+p'} \epsilon_{Q-p'}} V_{p'p}  = 0\nonumber\\
      %
-     &\beta \bar{\Delta}_{du}^p + \frac{\hbar}{2} \sum_{p'} \frac{\delta_{du}}{\left(\Delta_{du} \bar{\Delta}_{ud} + \epsilon_{Q+p} \epsilon_{Q-p}\right)} \bar{\Delta}_{ud}^{p'} V_{p'p}  = 0\nonumber\\
+     &\beta \bar{\Delta}_{du}^p + \frac{\hbar}{2} \sum_{p'} \frac{\bar{\Delta}_{ud}^{p'}}{\Delta_{du}^{p'} \bar{\Delta}_{ud}^{p'} + \epsilon_{Q+p'} \epsilon_{Q-p'}}  V_{p'p}  = 0\nonumber\\
      %
-     &\beta \bar{\Delta}^{p}_{ud} + \frac{\hbar}{2} \sum_{p'} \frac{\delta_{ud}}{\left(\Delta_{ud} \bar{\Delta}_{du} + \epsilon_{Q+p} \epsilon_{Q-p}\right)} \bar{\Delta}_{du}^{p'} V_{p'p} = 0 \nonumber \\
+     &\beta \bar{\Delta}^{p}_{ud} + \frac{\hbar}{2} \sum_{p'} \frac{\bar{\Delta}_{du}^{p'}}{\Delta_{ud}^{p'} \bar{\Delta}_{du}^{p'} + \epsilon_{Q+p'} \epsilon_{Q-p'}}  V_{p'p} = 0 \nonumber \\
      %
-     &\beta{\bar{\Delta}}_{dd}^{p} + \frac{\hbar}{2} \sum_{p'} \frac{\bar{\Delta}_{dd}^{p'}  V_{p'p}}{\Delta_{dd}^{p'} \bar{\Delta}_{dd}^{p'} + \epsilon_{Q+p'} \epsilon_{Q-p'}}  = 0\nonumber
-     \label{gap equation deltabar}
+     &\beta{\bar{\Delta}}_{dd}^{p} + \frac{\hbar}{2} \sum_{p'} \frac{\bar{\Delta}_{dd}^{p'}}{\Delta_{dd}^{p'} \bar{\Delta}_{dd}^{p'} + \epsilon_{Q+p'} \epsilon_{Q-p'}}  V_{p'p}  = 0\nonumber \\
+     %
+     &\beta \Delta_{uu}^p + \frac{\hbar}{2} \sum_{p'} V_{pp'} \frac{\Delta^{p'}_{uu}}{\Delta^{p'}_{uu} \bar{\Delta}^{p'}_{uu} + \epsilon_{Q+p'} \epsilon_{Q-p'}} = 0\nonumber \\
+     %
+     &\beta \Delta_{du}^p + \frac{\hbar}{2} \sum_{p'} V_{pp'} \frac{\Delta^{p'}_{ud}}{\Delta^{p'}_{ud} \bar{\Delta}^{p'}_{du} + \epsilon_{Q+p'} \epsilon_{Q-p'}} = 0 \nonumber \\
+     %
+     &\beta \Delta_{ud}^p + \frac{\hbar}{2} \sum_{p'} V_{pp'} \frac{\Delta^{p'}_{du}}{\Delta^{p'}_{du} \bar{\Delta}^{p'}_{ud} + \epsilon_{Q+p'} \epsilon_{Q-p'}} = 0\nonumber \\
+     %
+     &\beta \Delta_{dd}^p + \frac{\hbar}{2} \sum_{p'} V_{pp'} \frac{\Delta^{p'}_{uu}}{\Delta^{p'}_{uu} \bar{\Delta}^{p'}_{uu} + \epsilon_{Q+p'} \epsilon_{Q-p'}} = 0
+\label{gap equations}
 \end{align}
-where we have used the determinant
+where we have used the expression for determinants
 \begin{align}
 &\det{G^{-1}}_{\Delta_{uu} = \Delta_{dd} = 0} = \left(\Delta_{du} \bar{\Delta}_{ud} + \epsilon_{Q+p} \epsilon_{Q-p}\right) \left(\Delta_{ud} \bar{\Delta}_{du} + \epsilon_{Q+p} \epsilon_{Q-p}\right) \nonumber \\
 %
-&\det{G^{-1}}_{\Delta_{dd} = \Delta_{ud}  = \Delta_{du} = 0} = \epsilon_{Q+p'} \epsilon_{Q-p'} \left( \Delta^{p'}_{uu} \bar{\Delta}^{p'}_{uu} + \epsilon_{Q+p'} \epsilon_{Q-p'}\right)\nonumber\\
+&\det{G^{-1}}_{\Delta_{dd} = \Delta_{ud}  = \Delta_{du} = 0} = \epsilon_{Q+p'} \epsilon_{Q-p'} \left( \Delta^{p'}_{uu} \bar{\Delta}^{p'}_{uu} + \epsilon_{Q+p'} \epsilon_{Q-p'}\right)\label{determinants}\\
 %
 &\det{G^{-1}}_{\Delta_{uu} = \Delta_{ud}  = \Delta_{du} = 0} = \epsilon_{Q+p'} \epsilon_{Q-p'} \left( \Delta^{p'}_{dd} \bar{\Delta}^{p'}_{dd} + \epsilon_{Q+p'} \epsilon_{Q-p'}\right)\nonumber
 \end{align}
-Gives the equations
-\begin{align}
- &\beta{\bar{\Delta}}_{uu}^{p} + \frac{\hbar}{2} \sum_{p'} \frac{\bar{\Delta}_{uu}^{p'}  V_{p'p}}{\Delta_{uu}^{p'} \bar{\Delta}_{uu}^{p'} + \epsilon_{Q+p'} \epsilon_{Q-p'}}  = 0\nonumber\\
-     %
-     &\beta \bar{\Delta}_{du}^p + \frac{\hbar}{2} \sum_{p'} \frac{\delta_{du}}{\left(\Delta_{du} \bar{\Delta}_{ud} + \epsilon_{Q+p} \epsilon_{Q-p}\right)} \bar{\Delta}_{ud}^{p'} V_{p'p}  = 0\nonumber\\
-     %
-     &\beta \bar{\Delta}^{p}_{ud} + \frac{\hbar}{2} \sum_{p'} \frac{\delta_{ud}}{\left(\Delta_{ud} \bar{\Delta}_{du} + \epsilon_{Q+p} \epsilon_{Q-p}\right)} \bar{\Delta}_{du}^{p'} V_{p'p} = 0 \nonumber \\
-     %
-     &\beta{\bar{\Delta}}_{dd}^{p} + \frac{\hbar}{2} \sum_{p'} \frac{\bar{\Delta}_{dd}^{p'}  V_{p'p}}{\Delta_{dd}^{p'} \bar{\Delta}_{dd}^{p'} + \epsilon_{Q+p'} \epsilon_{Q-p'}}  = 0\nonumber \\
-     %
-    &\beta \Delta_{uu}^p + \frac{\hbar}{2} \sum_{p'} V_{pp'} \frac{\Delta^{p'}_{uu}}{\left( \Delta^{p'}_{uu} \bar{\Delta}^{p'}_{uu} + \epsilon_{Q+p'} \epsilon_{Q-p'}\right)}\nonumber \\
-    %
-    &\beta \Delta_{du}^p + \frac{\hbar}{2} \sum_{p'} V_{pp'} \frac{\Delta^{p'}_{ud}}{\left( \Delta^{p'}_{ud} \bar{\Delta}^{p'}_{du} + \epsilon_{Q+p'} \epsilon_{Q-p'}\right)} \nonumber \\
-    %
-    &\beta \Delta_{ud}^p + \frac{\hbar}{2} \sum_{p'} V_{pp'} \frac{\Delta^{p'}_{du}}{\left( \Delta^{p'}_{du} \bar{\Delta}^{p'}_{ud} + \epsilon_{Q+p'} \epsilon_{Q-p'}\right)}\nonumber \\
-    %
-    &\beta \Delta_{dd}^p + \frac{\hbar}{2} \sum_{p'} V_{pp'} \frac{\Delta^{p'}_{uu}}{\left( \Delta^{p'}_{uu} \bar{\Delta}^{p'}_{uu} + \epsilon_{Q+p'} \epsilon_{Q-p'}\right)}
-\label{gap equations}
-\end{align}
-We can immediately identify the relation $\bar{\Delta} = \Delta^*$. To see this we use the fact that $V_{pp'}$ is real and that $V_{pp'} = V_{p'p}$ and take the complex conjugate of the equation for $\bar{\Delta}$~\cref{gap equations}. Since $\epsilon_{Q + p'}\epsilon_{Q-p'}$ is the only frequency dependent part of the equaion, we can change the direction of summation $p_0 \rightarrow -p_0$ and get $(\epsilon_{Q + p'}\epsilon_{Q-p'})* \rightarrow \epsilon_{Q + p'}\epsilon_{Q-p'}$. Identifying $\bar{\Delta} = \Delta^*$ we get the equation for $\Delta$.
+We can immediately identify the relation $\bar{\Delta} = \Delta^*$. To see this we use the fact that $V_{pp'}$ is real and that $V_{pp'} = V_{p'p}$ and take the complex conjugate of the equations for $\bar{\Delta}$ in~\cref{gap equations}. Since $\epsilon_{Q + p'}\epsilon_{Q-p'}$ is the only frequency dependent part of the equaion, we can change the direction of summation $p_0 \rightarrow -p_0$ and get $(\epsilon_{Q + p'}\epsilon_{Q-p'})* \rightarrow \epsilon_{Q + p'}\epsilon_{Q-p'}$. Identifying $\bar{\Delta} = \Delta^*$ we get the equations for $\Delta$.
 
-Likning for sym asym del bruker $\Delta_a = (\Delta_{ud} - \Delta_{du}) / 2$ og $\Delta_s = (\Delta_{ud} + \Delta_{du}) / 2$
+The equations for $\Delta_{ud}$ and $\Delta_{du$ are still coupled to each other. In order to uncouple the equations we introduce the singlet and triplet states $\Delta_a = (\Delta_{ud} - \Delta_{du}) / 2$ og $\Delta_s = (\Delta_{ud} + \Delta_{du}) / 2$, and take only one of the gaps to be nonzero
 \begin{align}
-\beta \bar{\Delta}^{p}_{ud} + \frac{\hbar}{2} \sum_{p'} \frac{\bar{\Delta}_{du}^{p'}}{\Delta_{ud} \bar{\Delta}_{du} + \epsilon_{Q+p} \epsilon_{Q-p}} V_{p'p} &= 0 \nonumber \\
+\beta \bar{\Delta}^{p}_{ud} + \frac{\hbar}{2} \sum_{p'} \frac{\bar{\Delta}_{du}^{p'}}{\Delta_{ud}^{p'} \bar{\Delta}_{du}^{p'} + \epsilon_{Q+p'} \epsilon_{Q-p'}} V_{p'p} &= 0 \nonumber \\
 %
-\beta (\bar{\Delta}^{p}_{s} + \bar{\Delta}^{p}_{a}) + \frac{\hbar}{2} \sum_{p'} \frac{\bar{\Delta}_{s}^{p'} - \bar{\Delta}_{a}^{p'}}{(\Delta_s^{p'} + \Delta_a^{p'})(\bar{\Delta}_s^{p'} - \bar{\Delta}_a^{p'})  + \epsilon_{Q+p} \epsilon_{Q-p}} V_{p'p} &= 0 \nonumber \\   
+\beta (\bar{\Delta}^{p}_{s} + \bar{\Delta}^{p}_{a}) + \frac{\hbar}{2} \sum_{p'} \frac{\bar{\Delta}_{s}^{p'} - \bar{\Delta}_{a}^{p'}}{(\Delta_s^{p'} + \Delta_a^{p'})(\bar{\Delta}_s^{p'} - \bar{\Delta}_a^{p'})  + \epsilon_{Q+p'} \epsilon_{Q-p'}} V_{p'p} &= 0 \nonumber \\   
 %
-\rightarrow \beta \bar{\Delta}^{p}_{s} + \frac{\hbar}{2} \sum_{p'} \frac{\bar{\Delta}_{s}^{p'}}{\Delta_s^{p'}\bar{\Delta}_s^{p'}  + \epsilon_{Q+p} \epsilon_{Q-p}} V_{p'p} &= 0 \nonumber \\ 
+\rightarrow \beta \bar{\Delta}^{p}_{s} + \frac{\hbar}{2} \sum_{p'} \frac{\bar{\Delta}_{s}^{p'}}{\Delta_s^{p'}\bar{\Delta}_s^{p'}  + \epsilon_{Q+p'} \epsilon_{Q-p'}} V_{p'p} &= 0 \nonumber \\ 
 %
-\beta \bar{\Delta}^{p}_{a} + \frac{\hbar}{2} \sum_{p'} \frac{- \bar{\Delta}_{a}^{p'}}{-\Delta_a^{p'}\bar{\Delta}_a^{p'}  + \epsilon_{Q+p} \epsilon_{Q-p}} V_{p'p} &= 0 \nonumber \\
+\beta \bar{\Delta}^{p}_{a} + \frac{\hbar}{2} \sum_{p'} \frac{- \bar{\Delta}_{a}^{p'}}{-\Delta_a^{p'}\bar{\Delta}_a^{p'}  + \epsilon_{Q+p'} \epsilon_{Q-p'}} V_{p'p} &= 0 \nonumber \;.
 \end{align}
 
 Now we restrict ourselves to only one of the gaps beeing nonzero, for simplicity we choose $\Delta_{\uparrow \uparrow}^{p}$. This yields the gap equation
 \begin{align}
     \beta{\bar{\Delta}}_{uu}^{p} + \frac{1}{2} \sum_{p'} \frac{\bar{\Delta}_{uu}^{p'}  V_{p'p}}{\Delta_{uu}^{p'} \bar{\Delta}_{uu}^{p'} + \epsilon_{Q+p'} \epsilon_{Q-p'}}  &= 0\nonumber\\
-    %
-    \beta{\bar{\Delta}}_{uu}^{p} + \frac{1}{N} \sum_{p',s} \frac{\bar{\Delta}_{uu}^{p'} g_{\textbf{Q} - \textbf{p},s}^{(\textbf{p'} - \textbf{p})} g_{\textbf{Q} + \textbf{p},s}^{(\textbf{p} - \textbf{p'})}}{\left(\Delta_{uu}^{p'} \bar{\Delta}_{uu}^{p'} + \epsilon_{Q+p'} \epsilon_{Q-p'}\right) \left(-i\hbar\Omega_{(p'-p)_0} + \hbar \omega_{(\textbf{p'} - \textbf{p})}\right)}  &= 0\nonumber \\
 \end{align}
 Where we have used $\det{G^{-1}}(p') = \epsilon_{Q+p'} \epsilon_{Q-p'} \left( \Delta^{p'}_{uu} \bar{\Delta}^{p'}_{uu} + \epsilon_{Q+p'} \epsilon_{Q-p'}\right)$
-\\
-\\
+
+Making the approximation that $\Omega_{\left(p' - p\right)_0} = 0$, the potential~\cref{potential in new coordinates} reduces to
+\begin{equation}
+    V_{pp'} = \frac{2}{N} \sum_s \frac{g_{\textbf{Q} + \textbf{p'},s}^{(\textbf{p} - \textbf{p'})} g_{\textbf{Q} - \textbf{p'},s}^{(\textbf{p'} - \textbf{p}})}{\hbar \omega_{(\textbf{p} - \textbf{p'})}}\;,
+    \label{potential in new coordinates}
+\end{equation}
+
+
 assuming that $\Delta$ is frequency independent, the frequency summation reduces to ($n = p_0'$), $\epsilon_{\textbf{k}} = \epsilon_{\textbf{k}} - \mu$
 \todo{legge til del om  $\Omega$ settes lik 0}
 \begin{align}
@@ -493,10 +488,13 @@ where we have set $\omega_{Q_0} = 0$ (hvorfor kan vi gjøre dette?).
          &=  \frac{-\beta / \hbar}{\sqrt{\left(\epsilon_{\textbf{Q} + \textbf{p'}} + \epsilon_{\textbf{Q} - \textbf{p'}}\right)^2 + 4 \abs{\Delta}^2 }}\left(f_{\textbf{p'}} + f_{-\textbf{p'}} - 1\right)\nonumber\\
 \end{align}
 In the last line we used $\frac{1}{e^X + 1} = 1 - \frac{1}{e^{-X} + 1}$ and $E_-^{\textbf{p}} = E_+^{-\textbf{p}}$. Putting everything together
-\begin{align}
-    {\bar{\Delta}}_{uu}^{p} &= \frac{1}{2 N} \sum_{\textbf{p'},s} \frac{\bar{\Delta}_{uu}^{p'} g_{\textbf{Q} - \textbf{p},s}^{(\textbf{p'} - \textbf{p})} g_{\textbf{Q} + \textbf{p},s}^{(\textbf{p} - \textbf{p'})}}{ \hbar \omega_{(\textbf{p'} - \textbf{p})} \sqrt{\left(\epsilon_{\textbf{Q} + \textbf{p'}} + \epsilon_{\textbf{Q} - \textbf{p'}}\right)^2 / 4 + \abs{\Delta}^2}} \left(f_{\textbf{p'}} + f_{-\textbf{p'}} - 1\right)  \nonumber
-\end{align}
+\begin{equation}
+\bar{\Delta}^{p}_{ud} - \frac{1}{2} \sum_{p'} \frac{\bar{\Delta}_{du}^{p'} V_{p'p}}{2\sqrt{\left(\epsilon_{\textbf{Q} + \textbf{p'}} + \epsilon_{\textbf{Q} - \textbf{p'}}\right)^2 / 4 + \abs{\Delta}^2 }}\left(f_{\textbf{p'}} + f_{-\textbf{p'}} - 1\right) &= 0     
+\end{equation}
 
+\textbf{schlawin side 3 triplet and singlet order?}
+\\
+\\
 \textbf{virker som om bar til komplekskonjugert er riktig i alle tilfellene?}
 \\
 \\
